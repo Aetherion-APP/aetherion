@@ -1,0 +1,2457 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)#contact -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Aetherion Systems | Autonomous AI Architectures</title>
+  <meta name="description" content="Aetherion Systems builds custom AI agents, lead capture systems, and workflow automation for businesses — deployed in 7–14 days. Provided by Ramiro. P.">
+  <meta property="og:title" content="Aetherion Systems | Autonomous AI Architectures">
+  <meta property="og:description" content="Custom AI agents that qualify leads, close deals, and run your workflows — 24/7, without fatigue.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Gray/Black theme — near-zero color */
+      --bg:          #080808;
+      --bg2:         #0e0e0e;
+      --bg3:         #131313;
+      --text:        #e8e8e8;
+      --muted:       #5a5a5a;
+      --mid:         #909090;
+      --accent:      rgba(255,255,255,0.85);
+      --turquoise:   #00d4c8;
+      --turq-glow:   rgba(0,212,200,0.25);
+      --turq-dim:    rgba(0,212,200,0.15);
+      --turq-border: rgba(0,212,200,0.35);
+
+      /* iOS 26 Liquid Glass */
+      --glass-fill:       rgba(255,255,255,0.048);
+      --glass-fill-hov:   rgba(255,255,255,0.085);
+      --glass-fill-deep:  rgba(255,255,255,0.028);
+      --glass-border:     rgba(255,255,255,0.10);
+      --glass-border-hi:  rgba(255,255,255,0.22);
+      --glass-shadow:     0 8px 32px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.10), inset 0 -1px 0 rgba(0,0,0,.25);
+      --glass-shadow-lg:  0 30px 80px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.12), inset 0 -1px 0 rgba(0,0,0,.3);
+      --glass-blur:       blur(32px) saturate(200%) brightness(1.08);
+      --glass-blur-lg:    blur(52px) saturate(220%) brightness(1.06);
+
+      /* Geometry */
+      --radius-pill: 999px;
+      --radius-card: 24px;
+      --radius-btn:  14px;
+
+      /* Fonts */
+      --font-h: 'Outfit', sans-serif;
+      --font-b: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family: var(--font-b);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.65;
+      -webkit-text-size-adjust: 100%;
+    }
+    * { box-sizing: border-box; max-width: 100%; }
+
+    /* ═══════════════════ SPLASH SCREEN ═══════════════════ */
+    #splash {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #050505;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      overflow: hidden;
+      transition: opacity .8s cubic-bezier(.4,0,.2,1), visibility .8s;
+    }
+    #splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    .splash-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 120% 80% at 50% 50%, rgba(255,255,255,.025) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 60% at 20% 80%, rgba(255,255,255,.018) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 60% at 80% 20%, rgba(255,255,255,.018) 0%, transparent 55%);
+    }
+
+    /* Orbiting rings */
+    .splash-ring {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.06);
+      transform-origin: center;
+    }
+    .splash-ring-1 { width: min(320px,80vw); height: min(320px,80vw); top:50%; left:50%; transform: translate(-50%,-50%); animation: ring-rot 12s linear infinite; }
+    .splash-ring-2 { width: min(520px,95vw); height: min(520px,95vw); top:50%; left:50%; transform: translate(-50%,-50%); animation: ring-rot 20s linear infinite reverse; }
+    .splash-ring-3 { width: min(720px,130vw); height: min(720px,130vw); top:50%; left:50%; transform: translate(-50%,-50%); animation: ring-rot 30s linear infinite; opacity:.4; }
+
+    .splash-ring-1::after, .splash-ring-2::after {
+      content:''; position:absolute;
+      width: 6px; height: 6px; border-radius:50%;
+      background: #00d4c8;
+      top: -3px; left: 50%;
+      box-shadow: 0 0 12px rgba(0,212,200,.7);
+    }
+    @keyframes ring-rot { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+    /* Center logo */
+    .splash-logo-wrap {
+      position: relative; z-index:2;
+      display: flex; flex-direction:column; align-items:center;
+      animation: splash-logo-in 1s cubic-bezier(.22,1,.36,1) .2s both;
+    }
+    @keyframes splash-logo-in {
+      from { opacity:0; transform:scale(.6) translateY(20px); }
+      to   { opacity:1; transform:scale(1) translateY(0); }
+    }
+
+    .splash-icon {
+      width: 80px; height: 80px; border-radius: 22px;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(40px) saturate(200%);
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 24px 60px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.2);
+      display: grid; place-items:center;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .splash-icon::before {
+      content:'';
+      position:absolute; inset:0; border-radius:22px;
+      background: linear-gradient(135deg, rgba(255,255,255,.12) 0%, transparent 60%);
+    }
+
+    .splash-wordmark {
+      font-family: var(--font-h); font-weight: 800;
+      font-size: 2.4rem; letter-spacing: -1px; color: #fff;
+      margin-bottom: .4rem;
+    }
+    .splash-sub {
+      font-family: var(--font-h); font-size: .72rem; font-weight: 500;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+    }
+
+    /* Tagline burst — cinematic */
+    .splash-taglines {
+      position: relative; z-index:2;
+      margin-top: 3.5rem;
+      text-align:center;
+      height: 28px; overflow: hidden;
+    }
+    .splash-tagline {
+      font-family: var(--font-h); font-size: .82rem; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,.25);
+      position: absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      opacity: 0;
+      animation: tagline-cycle 6s ease infinite;
+    }
+    .splash-tagline:nth-child(1) { animation-delay: 0s; }
+    .splash-tagline:nth-child(2) { animation-delay: 2s; }
+    .splash-tagline:nth-child(3) { animation-delay: 4s; }
+    @keyframes tagline-cycle {
+      0%  { opacity:0; transform:translateY(10px); }
+      8%  { opacity:1; transform:translateY(0); }
+      33% { opacity:1; transform:translateY(0); }
+      41% { opacity:0; transform:translateY(-10px); }
+      100%{ opacity:0; transform:translateY(-10px); }
+    }
+
+    /* Scanning line */
+    .splash-scan {
+      position:absolute; inset:0; pointer-events:none;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(255,255,255,.03) 50%,
+        transparent 100%);
+      background-size: 100% 200px;
+      animation: scan-move 3s linear infinite;
+    }
+    @keyframes scan-move { to { background-position: 0 100vh; } }
+
+    /* Progress bar */
+    .splash-progress {
+      position: absolute; bottom: clamp(1.5rem, 6vh, 3.5rem); left: 50%; transform: translateX(-50%);
+      width: min(420px, 78vw);
+      height: 3px;
+      background: rgba(255,255,255,.08);
+      border-radius: 99px;
+      overflow: visible;
+    }
+    .splash-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00d4c8, #7ffff4, #00d4c8);
+      background-size: 200% 100%;
+      animation: progress-fill 2.8s cubic-bezier(.4,0,.2,1) .5s forwards, shimmer-bar 1.6s linear infinite;
+      border-radius: 99px;
+      width: 0%;
+      position: relative;
+      box-shadow: 0 0 14px rgba(0,212,200,.9), 0 0 32px rgba(0,212,200,.45);
+    }
+    .splash-progress-fill::after {
+      content: '';
+      position: absolute; right: -1px; top: 50%;
+      transform: translateY(-50%);
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,212,200,1), 0 0 24px rgba(0,212,200,.7);
+      animation: dot-chase 2.8s cubic-bezier(.4,0,.2,1) .5s forwards;
+    }
+    .splash-pct {
+      position: absolute; bottom: -1.6rem; left: 50%; transform: translateX(-50%);
+      font-family: var(--font-h); font-size: .65rem; font-weight: 700;
+      letter-spacing: 2px; color: rgba(0,212,200,.6);
+      white-space: nowrap;
+    }
+    @keyframes progress-fill { to { width: 100%; } }
+    @keyframes shimmer-bar {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    @keyframes dot-chase { to { right: calc(100% - 100%); } }
+
+    /* ═══════════════════ BACKGROUND ═══════════════════ */
+    .bg-wrap {
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background: linear-gradient(160deg, #0d0d0d 0%, #080808 40%, #060606 100%);
+      overflow:hidden;
+    }
+
+    /* Radial shimmer blobs — monochrome */
+    .blob {
+      position:absolute; border-radius:50%;
+      filter: blur(120px);
+      animation: drift 40s infinite alternate ease-in-out;
+    }
+    .b1 { width:800px; height:800px; background:#fff; opacity:.022; top:-20%; left:-15%; }
+    .b2 { width:700px; height:700px; background:#fff; opacity:.018; bottom:-20%; right:-10%; animation-delay:-12s; }
+    .b3 { width:400px; height:400px; background:#fff; opacity:.014; top:40%; left:55%; animation-delay:-20s; }
+    @keyframes drift { to { transform:translate(4vw,6vh) scale(1.1); } }
+
+    /* Subtle grid */
+    .grid-lines {
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    }
+
+    /* Noise grain overlay */
+    .grain {
+      position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.018;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+
+    /* ═══════════════════ LAYOUT ═══════════════════ */
+    .site { position:relative; z-index:2; }
+    .wrap { max-width:1200px; margin:0 auto; padding:0 2rem; }
+    .pad  { padding:120px 0; }
+
+    /* ═══════════════════ NAVBAR ═══════════════════ */
+    .navbar {
+      position:fixed; top:0; width:100%; z-index:100;
+      padding:.9rem 0;
+      transition: all .5s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-inner { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
+    .nav-capsule {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:.65rem 1rem .65rem 1.2rem;
+      background: rgba(255,255,255,.045);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--glass-shadow);
+      transition: all .5s cubic-bezier(.4,0,.2,1);
+    }
+    .navbar.stuck .nav-capsule {
+      background: rgba(8,8,8,.82);
+      border-color: rgba(255,255,255,.09);
+      box-shadow: 0 12px 48px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .logo { display:flex; align-items:center; gap:10px; font-family:var(--font-h); font-size:1.25rem; font-weight:800; color:#fff; text-decoration:none; }
+    .logo-box {
+      width:30px; height:30px;
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius:8px;
+      display:grid; place-items:center; flex-shrink:0;
+      box-shadow: 0 4px 14px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.15);
+      position:relative; overflow:hidden;
+    }
+    .logo-box::before {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 60%);
+    }
+
+    .nav-links { display:flex; gap:0; list-style:none; }
+    .nav-links a {
+      color:rgba(255,255,255,.45);
+      text-decoration:none;
+      font-family:var(--font-h); font-size:.84rem; font-weight:500;
+      padding:.42rem .95rem;
+      border-radius:var(--radius-pill);
+      transition:all .25s;
+    }
+    .nav-links a:hover { color:#fff; background:rgba(255,255,255,.07); }
+
+    .nav-right { display:flex; align-items:center; gap:.7rem; }
+    .live-pill {
+      display:inline-flex; align-items:center; gap:6px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius-pill);
+      padding:5px 13px;
+      font-family:var(--font-h); font-size:.72rem; font-weight:600;
+      color:rgba(255,255,255,.5);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .dot {
+      width:6px; height:6px; background:#00d4c8; border-radius:50%;
+      box-shadow:0 0 8px rgba(0,212,200,.8);
+      animation:blink 2s infinite; flex-shrink:0;
+      opacity:.9;
+    }
+    @keyframes blink { 0%,100%{opacity:.7} 50%{opacity:.2} }
+
+    /* Mobile menu button */
+    .mob-menu-btn { display:none; }
+    .mob-nav { display:none; }
+
+    /* ═══════════════════ BUTTONS ═══════════════════ */
+    .btn {
+      display:inline-block;
+      font-family:var(--font-h); font-weight:700; font-size:.9rem;
+      padding:14px 32px;
+      border-radius:var(--radius-btn);
+      border:none; cursor:pointer; text-decoration:none;
+      transition:all .35s cubic-bezier(.4,0,.2,1);
+      position:relative; overflow:hidden; isolation:isolate;
+    }
+
+    /* Primary — white glass */
+    .btn-p {
+      background: rgba(255,255,255,.92);
+      color: #080808;
+      box-shadow: 0 4px 20px rgba(255,255,255,.12), inset 0 1px 0 rgba(255,255,255,1);
+    }
+    .btn-p::before {
+      content:'';
+      position:absolute; inset:0;
+      background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%);
+      background-size:250% 100%;
+      animation: glisten 3s ease-in-out infinite;
+      border-radius:inherit;
+    }
+    .btn-p:hover {
+      transform:translateY(-2px) scale(1.02);
+      background: #fff;
+      box-shadow: 0 10px 36px rgba(255,255,255,.2), inset 0 1px 0 rgba(255,255,255,1);
+    }
+
+    /* Ghost — liquid glass */
+    .btn-g {
+      background: var(--glass-fill);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      color: var(--mid);
+      box-shadow: var(--glass-shadow);
+    }
+    .btn-g::before {
+      content:'';
+      position:absolute; inset:0;
+      background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.12) 50%, transparent 70%);
+      background-size:250% 100%;
+      animation: glisten-g 3.8s ease-in-out infinite;
+      border-radius:inherit;
+    }
+    .btn-g:hover {
+      border-color: var(--glass-border-hi);
+      color: #fff;
+      background: rgba(255,255,255,.07);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.18);
+    }
+
+    @keyframes glisten {
+      0%   { background-position:-100% 0; opacity:0; }
+      20%  { opacity:1; }
+      60%  { opacity:1; }
+      100% { background-position:220% 0; opacity:0; }
+    }
+    @keyframes glisten-g {
+      0%   { background-position:-100% 0; opacity:0; }
+      25%  { opacity:1; }
+      65%  { opacity:1; }
+      100% { background-position:220% 0; opacity:0; }
+    }
+
+    .btn-sm { padding:9px 20px; font-size:.82rem; }
+
+    /* ═══════════════════ HERO ═══════════════════ */
+    .hero {
+      min-height:100vh; display:flex; flex-direction:column;
+      justify-content:center; align-items:center; text-align:center;
+      padding:160px 2rem 80px;
+    }
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:10px;
+      background: var(--glass-fill);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-pill);
+      padding:8px 20px;
+      font-family:var(--font-h); font-size:.73rem; font-weight:600;
+      letter-spacing:1.5px; text-transform:uppercase; color:var(--mid);
+      margin-bottom:2rem;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .hero h1 {
+      font-family:var(--font-h); font-size:clamp(3.6rem,9.5vw,7rem);
+      font-weight:800; line-height:1.02; letter-spacing:-1px; margin-bottom:1.8rem;
+    }
+    .g-white {
+      background: linear-gradient(to bottom, #ffffff 20%, rgba(255,255,255,.5));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:block;
+    }
+    .g-dim {
+      background: linear-gradient(to bottom, rgba(255,255,255,.55) 0%, rgba(255,255,255,.25) 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:block;
+    }
+
+    .hero-sub {
+      font-size:1.15rem; color:var(--muted); max-width:560px; margin-bottom:2.8rem;
+      font-weight:300; line-height:1.75;
+    }
+    .hero-ctas { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+
+    /* Stats bar */
+    .stats {
+      display:flex; gap:0; margin-top:5rem; flex-wrap:wrap; justify-content:center;
+      background: var(--glass-fill);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius:20px;
+      padding:1.5rem 2.5rem;
+      box-shadow: var(--glass-shadow);
+      position:relative; overflow:hidden;
+    }
+    .stats::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+    }
+    .stat-item { text-align:center; padding:0 2.5rem; }
+    .stat-val {
+      font-family:var(--font-h); font-size:2rem; font-weight:800;
+      background: linear-gradient(to bottom, #fff, rgba(255,255,255,.6));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .stat-lbl { font-size:.78rem; color:var(--muted); margin-top:4px; }
+    .stat-div { width:1px; background:rgba(255,255,255,.08); align-self:stretch; margin:.3rem 0; }
+
+    /* ═══════════════════ SECTION HEADERS ═══════════════════ */
+    .sec-hdr { text-align:center; margin-bottom:5rem; }
+    .sec-tag {
+      display:inline-block; font-family:var(--font-h); font-size:.7rem; font-weight:700;
+      letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:1.2rem;
+    }
+    .sec-title {
+      font-family:var(--font-h); font-size:clamp(2rem,4vw,3rem);
+      font-weight:700; letter-spacing:-.5px; line-height:1.15;
+      background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,.5));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .sec-desc { color:var(--muted); max-width:550px; margin:1rem auto 0; font-size:1.05rem; }
+
+    /* ═══════════════════ REVEAL ═══════════════════ */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.show { opacity:1; transform:translateY(0); }
+
+    /* ═══════════════════ SERVICES ═══════════════════ */
+    .svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .svc-card {
+      background: var(--glass-fill);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-card);
+      padding:3rem 2.5rem;
+      position:relative; overflow:hidden;
+      transition:all .4s cubic-bezier(.4,0,.2,1);
+      box-shadow: var(--glass-shadow);
+    }
+    .svc-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+    }
+    .svc-card::after {
+      content:''; position:absolute; top:0; left:0; width:100%; height:2px;
+      background: linear-gradient(90deg, rgba(0,212,200,.3), rgba(0,212,200,1), rgba(0,212,200,.3));
+      transform:scaleX(0); transform-origin:left; transition:transform .4s;
+    }
+    .svc-card:hover {
+      background: var(--glass-fill-hov);
+      border-color: var(--glass-border-hi);
+      transform:translateY(-5px);
+      box-shadow: var(--glass-shadow-lg);
+    }
+    .svc-card:hover::after { transform:scaleX(1); }
+    .svc-icon {
+      width:52px; height:52px; border-radius:15px;
+      display:grid; place-items:center; margin-bottom:1.8rem;
+      font-size:1.3rem;
+      background: var(--glass-fill);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 4px 14px rgba(0,0,0,.4);
+      position:relative; overflow:hidden;
+    }
+    .svc-icon::before {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(135deg, rgba(255,255,255,.1) 0%, transparent 60%);
+    }
+    .svc-num { position:absolute; top:2.5rem; right:2.5rem; font-family:var(--font-h); font-size:.68rem; font-weight:700; color:rgba(255,255,255,.08); letter-spacing:2px; }
+    .svc-card h3 { font-family:var(--font-h); font-size:1.25rem; font-weight:700; margin-bottom:.9rem; }
+    .svc-card p { color:var(--muted); font-size:.95rem; line-height:1.7; }
+
+    /* ═══════════════════ PROCESS ═══════════════════ */
+    .proc-bg {
+      background: rgba(255,255,255,.008);
+      border-top:1px solid rgba(255,255,255,.05);
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
+    .proc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; }
+    .proc-step {
+      padding:2.5rem 2rem; text-align:center;
+      background: var(--glass-fill);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-card);
+      box-shadow: var(--glass-shadow);
+      transition:all .4s cubic-bezier(.4,0,.2,1);
+      position:relative; overflow:hidden;
+    }
+    .proc-step::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+    }
+    .proc-step:hover { transform:translateY(-4px); border-color:var(--glass-border-hi); }
+    .step-n {
+      width:50px; height:50px; border-radius:50%;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.18);
+      display:grid; place-items:center;
+      font-family:var(--font-h); font-weight:800; font-size:1.1rem; color:#fff;
+      margin:0 auto 1.5rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.2);
+    }
+    .proc-step h4 { font-family:var(--font-h); font-weight:700; margin-bottom:.6rem; }
+    .proc-step p { color:var(--muted); font-size:.9rem; }
+
+    /* ═══════════════════ SOCIAL PROOF ═══════════════════ */
+    .proof-strip {
+      padding:2.5rem 0;
+      border-top:1px solid rgba(255,255,255,.06);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .proof-label { text-align:center; font-size:.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:1.4rem; font-family:var(--font-h); font-weight:600; }
+    .proof-logos { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; }
+    .proof-logo { font-family:var(--font-h); font-weight:700; font-size:.9rem; color:rgba(255,255,255,.2); padding:0 2rem; letter-spacing:.5px; transition:color .3s; }
+    .proof-logo:hover { color:rgba(255,255,255,.5); }
+    .proof-div { width:1px; height:18px; background:rgba(255,255,255,.08); }
+
+    /* ═══════════════════ TESTIMONIALS ═══════════════════ */
+    .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .testi-card {
+      padding:2.2rem; border-radius:var(--radius-card);
+      background: var(--glass-fill);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border:1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      display:flex; flex-direction:column; gap:1.2rem;
+      transition:all .4s cubic-bezier(.4,0,.2,1);
+      position:relative; overflow:hidden;
+    }
+    .testi-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent); }
+    .testi-card:hover { transform:translateY(-4px); border-color:var(--glass-border-hi); }
+    .testi-card.testi-hot { border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.04); }
+    .testi-stars { color:rgba(255,255,255,.4); font-size:.85rem; letter-spacing:2px; }
+    .testi-text { color:var(--mid); font-size:.93rem; line-height:1.72; flex:1; font-style:italic; }
+    .testi-author { display:flex; align-items:center; gap:12px; }
+    .testi-avatar {
+      width:38px; height:38px; border-radius:50%;
+      background: rgba(255,255,255,.08);
+      backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,.15);
+      display:grid; place-items:center; font-family:var(--font-h); font-weight:800; font-size:.72rem; color:#fff; flex-shrink:0;
+      box-shadow:0 4px 14px rgba(0,0,0,.5);
+    }
+    .testi-name { font-family:var(--font-h); font-weight:700; font-size:.85rem; color:#fff; }
+    .testi-role { font-size:.72rem; color:var(--muted); margin-top:2px; }
+
+    /* ═══════════════════ AGENTS GRID ═══════════════════ */
+    .agents-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+    .agent-card {
+      display:flex; flex-direction:column; gap:.9rem;
+      padding:2rem 1.8rem;
+      background: var(--glass-fill);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-card);
+      box-shadow: var(--glass-shadow);
+      cursor:pointer;
+      transition:all .4s cubic-bezier(.4,0,.2,1);
+      position:relative; overflow:hidden;
+    }
+    .agent-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+    }
+    .agent-card:hover { transform:translateY(-5px); border-color:var(--glass-border-hi); box-shadow:var(--glass-shadow-lg); }
+    .agent-card.agent-active { border-color:rgba(255,255,255,.2); background:rgba(255,255,255,.04); }
+    .agent-card.agent-active::after {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background: linear-gradient(90deg, rgba(0,212,200,.2), rgba(0,212,200,1), rgba(0,212,200,.2));
+    }
+    .agent-card.agent-custom { border-color:rgba(255,255,255,.12); }
+    .agent-icon { font-size:1.8rem; line-height:1; }
+    .agent-info { flex:1; }
+    .agent-name { font-family:var(--font-h); font-weight:800; font-size:.95rem; letter-spacing:.5px; color:#fff; }
+    .agent-role { font-size:.75rem; color:rgba(255,255,255,.35); font-family:var(--font-h); font-weight:600; margin-top:2px; margin-bottom:.6rem; }
+    .agent-desc { font-size:.85rem; color:var(--muted); line-height:1.6; }
+    .agent-status {
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:.68rem; font-family:var(--font-h); font-weight:700; letter-spacing:.5px; text-transform:uppercase;
+      padding:4px 10px; border-radius:var(--radius-pill);
+      background:rgba(255,255,255,.06); color:rgba(255,255,255,.4); border:1px solid rgba(255,255,255,.1);
+      align-self:flex-start;
+    }
+    .agent-status.on::before { content:''; width:6px; height:6px; background:#00d4c8; border-radius:50%; box-shadow:0 0 6px rgba(0,212,200,.8); animation:blink 2s infinite; }
+    .agent-status.custom { background:rgba(255,255,255,.05); color:rgba(255,255,255,.35); }
+
+    /* ═══════════════════ SINTRA SHELL — DEMO ═══════════════════ */
+    .sintra-shell {
+      display:grid; grid-template-columns:280px 1fr;
+      border-radius: var(--radius-card);
+      border: 1px solid var(--glass-border-hi);
+      overflow:hidden;
+      box-shadow: 0 60px 150px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.05) inset;
+    }
+    .sintra-sidebar {
+      background: rgba(5,5,5,.8);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border-right: 1px solid rgba(255,255,255,.07);
+      padding:1.8rem 1.4rem;
+      display:flex; flex-direction:column; gap:.5rem;
+      overflow-y:auto;
+    }
+    .sidebar-label { font-family:var(--font-h); font-size:.65rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:.5rem; }
+    .agent-tabs { display:flex; flex-direction:column; gap:.35rem; }
+    .atab {
+      display:flex; align-items:center; gap:10px;
+      padding:.8rem 1rem;
+      border-radius:12px;
+      background:transparent;
+      border:1px solid transparent;
+      cursor:pointer; text-align:left; color:var(--mid);
+      transition:all .25s; font-family:var(--font-b);
+    }
+    .atab:hover { background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.07); color:#fff; }
+    .atab.active { background:rgba(0,212,200,.08); border-color:rgba(0,212,200,.35); color:#fff; }
+    .atab-icon { font-size:1.1rem; flex-shrink:0; }
+    .atab-text { font-size:.8rem; line-height:1.3; }
+    .atab-text strong { font-family:var(--font-h); font-weight:700; font-size:.82rem; letter-spacing:.3px; }
+    .atab-text small { color:var(--muted); font-size:.7rem; }
+    .sidebar-caps { display:flex; flex-direction:column; gap:.35rem; }
+    .cap-list { display:flex; flex-direction:column; gap:.3rem; }
+    .cap-item { display:flex; align-items:center; gap:8px; font-size:.75rem; color:var(--muted); }
+    .cap-dot { width:5px; height:5px; background:rgba(255,255,255,.3); border-radius:50%; flex-shrink:0; }
+    .sidebar-stat-row {
+      display:flex; justify-content:space-between;
+      background: rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px; padding:.8rem;
+      margin-top:auto;
+    }
+    .ss-item { text-align:center; }
+    .ss-val { font-family:var(--font-h); font-size:1rem; font-weight:800; color:#fff; }
+    .ss-lbl { font-size:.62rem; color:var(--muted); margin-top:2px; }
+
+    /* Chat window */
+    .chat-win {
+      max-width:860px; margin:0 auto; height:680px;
+      display:flex; flex-direction:column; overflow:hidden;
+      border-radius: var(--radius-card);
+      border: 1px solid var(--glass-border-hi);
+      background: rgba(6,6,6,.75);
+      backdrop-filter: blur(40px) saturate(200%);
+      -webkit-backdrop-filter: blur(40px) saturate(200%);
+      box-shadow: 0 60px 150px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.05) inset;
+    }
+    .chat-hdr {
+      padding:1.3rem 2rem;
+      border-bottom:1px solid rgba(255,255,255,.07);
+      display:flex; align-items:center; gap:14px;
+      background:rgba(255,255,255,.025);
+      flex-shrink:0;
+      box-shadow: inset 0 -1px 0 rgba(0,0,0,.2);
+    }
+    .chat-hdr-info { flex:1; }
+    .chat-hdr-name { font-family:var(--font-h); font-weight:700; font-size:.92rem; letter-spacing:.5px; }
+    .chat-hdr-sub { font-size:.73rem; color:rgba(255,255,255,.35); margin-top:2px; }
+    .chat-badge {
+      font-size:.68rem;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      color:rgba(255,255,255,.45); padding:4px 11px; border-radius:var(--radius-pill);
+      font-family:var(--font-h); font-weight:600;
+    }
+    .chat-body {
+      flex:1; padding:1.8rem; overflow-y:auto;
+      display:flex; flex-direction:column; gap:1.2rem;
+      scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.07) transparent;
+    }
+    .msg-ai-wrap { display:flex; flex-direction:column; gap:6px; align-self:flex-start; max-width:82%; animation:msgIn .35s ease; }
+    .msg-ai-label { display:flex; align-items:center; gap:8px; }
+    .msg-avatar {
+      width:22px; height:22px; border-radius:7px;
+      background:rgba(255,255,255,.1); backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.18);
+      display:grid; place-items:center;
+      font-size:.58rem; color:#fff; font-weight:800; font-family:var(--font-h); flex-shrink:0;
+      box-shadow:0 2px 8px rgba(0,0,0,.5);
+    }
+    .msg-ai-name-lbl { font-size:.7rem; font-family:var(--font-h); font-weight:700; color:rgba(255,255,255,.45); letter-spacing:.5px; }
+    .msg-ai {
+      padding:1.1rem 1.4rem; border-radius:18px; border-bottom-left-radius:4px;
+      font-size:.93rem; line-height:1.68;
+      background: rgba(255,255,255,.055);
+      backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,.09);
+      color:var(--text);
+      box-shadow: var(--glass-shadow);
+    }
+    .msg-user {
+      padding:1.1rem 1.4rem; border-radius:18px; border-bottom-right-radius:4px;
+      font-size:.93rem; line-height:1.68;
+      background: rgba(255,255,255,.12);
+      backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,.2);
+      color:#fff; font-weight:500;
+      align-self:flex-end; max-width:82%;
+      animation:msgIn .35s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.2);
+    }
+    @keyframes msgIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+    .typing-row {
+      display:none; align-self:flex-start;
+      padding:.85rem 1.2rem; border-radius:18px; border-bottom-left-radius:4px;
+      background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.09);
+      gap:5px; animation:msgIn .35s ease;
+    }
+    .typing-row.on { display:flex; }
+    .tdot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.4); animation:tb 1.2s infinite; }
+    .tdot:nth-child(2){animation-delay:.2s} .tdot:nth-child(3){animation-delay:.4s}
+    @keyframes tb { 0%,60%,100%{transform:translateY(0);opacity:.4} 30%{transform:translateY(-6px);opacity:1} }
+
+    .chips {
+      display:flex; flex-wrap:wrap; gap:.45rem;
+      padding:.75rem 1.6rem;
+      border-top:1px solid rgba(255,255,255,.05);
+      background:rgba(0,0,0,.2);
+      flex-shrink:0;
+    }
+    .chip {
+      padding:6px 15px; border-radius:var(--radius-pill);
+      background: var(--glass-fill);
+      backdrop-filter:blur(16px);
+      border:1px solid var(--glass-border);
+      color:var(--muted); font-size:.76rem; cursor:pointer;
+      transition:all .25s; font-family:var(--font-b);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .chip:hover { border-color:var(--glass-border-hi); color:#fff; background:rgba(255,255,255,.07); }
+
+    .chat-foot {
+      padding:1.2rem 1.6rem;
+      border-top:1px solid rgba(255,255,255,.05);
+      display:flex; gap:.75rem; align-items:center;
+      background:rgba(0,0,0,.25);
+      flex-shrink:0;
+    }
+    .chat-in {
+      flex:1;
+      background:rgba(255,255,255,.055);
+      backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:12px;
+      padding:13px 18px; color:#fff; outline:none;
+      font-family:var(--font-b); font-size:.93rem;
+      transition:border-color .3s, box-shadow .3s;
+    }
+    .chat-in::placeholder { color:var(--muted); }
+    .chat-in:focus {
+      border-color:rgba(0,212,200,.45);
+      box-shadow:0 0 0 3px rgba(0,212,200,.1);
+    }
+    .send-btn {
+      width:46px; height:46px; border-radius:12px;
+      background:#00d4c8;
+      border:none; cursor:pointer;
+      display:grid; place-items:center;
+      transition:all .25s; flex-shrink:0;
+      box-shadow:0 4px 14px rgba(0,212,200,.4);
+    }
+    .send-btn:hover { background:#00e8db; transform:scale(1.05); }
+    .send-btn:disabled { opacity:.4; cursor:not-allowed; transform:none; }
+
+    /* ═══════════════════ PRICING ═══════════════════ */
+    .price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:960px; margin:0 auto; }
+    .price-card {
+      padding:3rem 2.5rem; border-radius:var(--radius-card);
+      background: var(--glass-fill);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border:1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      display:flex; flex-direction:column;
+      position:relative; overflow:hidden;
+      transition:all .4s cubic-bezier(.4,0,.2,1);
+    }
+    .price-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent); }
+    .price-card:hover { transform:translateY(-4px); border-color:var(--glass-border-hi); box-shadow:var(--glass-shadow-lg); }
+    .price-card.hot {
+      border-color:rgba(0,212,200,.4);
+      background:rgba(0,212,200,.04);
+      transform:scale(1.02);
+    }
+    .price-card.hot:hover { transform:scale(1.02) translateY(-4px); }
+    .price-card.hot::after {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background: linear-gradient(90deg, rgba(0,212,200,.2), rgba(0,212,200,1), rgba(0,212,200,.2));
+    }
+    .price-badge {
+      display:inline-block; font-family:var(--font-h); font-size:.68rem; font-weight:700;
+      letter-spacing:1.5px; text-transform:uppercase; padding:5px 13px; border-radius:var(--radius-pill);
+      margin-bottom:1.5rem; align-self:flex-start;
+    }
+    .pb-std { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.45); }
+    .pb-hot { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); color:#fff; }
+    .price-card h3 { font-family:var(--font-h); font-size:1.4rem; font-weight:700; margin-bottom:.5rem; }
+    .price-card .sub { color:var(--muted); font-size:.9rem; margin-bottom:1.2rem; }
+    .price-val {
+      font-family:var(--font-h); font-size:3.2rem; font-weight:800;
+      background: linear-gradient(to bottom, #fff 30%, rgba(255,255,255,.6));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      margin-bottom:1.5rem;
+    }
+    .price-val span { font-size:1rem; color:var(--muted); -webkit-text-fill-color:var(--muted); }
+    .price-feats { list-style:none; display:flex; flex-direction:column; gap:.75rem; margin-bottom:2rem; flex:1; }
+    .price-feats li { font-size:.9rem; color:var(--mid); display:flex; gap:10px; align-items:flex-start; }
+    .price-feats li::before { content:'→'; color:rgba(255,255,255,.4); font-weight:700; flex-shrink:0; }
+    .price-cta { width:100%; text-align:center; display:block; }
+
+    /* ═══════════════════ CONTACT ═══════════════════ */
+    .contact-card {
+      max-width:680px; margin:0 auto; padding:4rem;
+      background: var(--glass-fill);
+      backdrop-filter: var(--glass-blur-lg);
+      -webkit-backdrop-filter: var(--glass-blur-lg);
+      border:1px solid var(--glass-border);
+      border-radius: var(--radius-card);
+      box-shadow: var(--glass-shadow-lg);
+      position:relative; overflow:hidden;
+    }
+    .contact-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent); }
+    .cform { display:flex; flex-direction:column; gap:1.2rem; }
+    .frow { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+    .fld { display:flex; flex-direction:column; gap:6px; }
+    .fld label { font-family:var(--font-h); font-size:.76rem; font-weight:600; letter-spacing:.5px; color:var(--muted); text-transform:uppercase; }
+    .fld input, .fld textarea, .fld select {
+      padding:14px 18px;
+      background:rgba(255,255,255,.055);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:12px; color:#fff; outline:none;
+      font-family:var(--font-b); font-size:.93rem;
+      transition:all .3s;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .fld input:focus, .fld textarea:focus, .fld select:focus {
+      border-color:rgba(0,212,200,.45);
+      background:rgba(0,212,200,.04);
+      box-shadow:0 0 0 3px rgba(0,212,200,.1), inset 0 1px 0 rgba(0,212,200,.08);
+    }
+    .fld select option { background:#0a0a0a; }
+    .fld textarea { resize:vertical; min-height:120px; }
+    #contact-ok { display:none; text-align:center; padding:3rem 0; }
+    #contact-ok .ok-icon { font-size:2.5rem; margin-bottom:1rem; }
+    #contact-ok h3 { font-family:var(--font-h); font-size:1.5rem; margin-bottom:.5rem; }
+    #contact-ok p { color:var(--muted); }
+
+    /* ═══════════════════ FOOTER ═══════════════════ */
+    footer { padding:5rem 0 3rem; border-top:1px solid rgba(255,255,255,.06); }
+    .foot-row { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem; }
+    .foot-logo { font-family:var(--font-h); font-weight:800; font-size:1.2rem; }
+    .foot-tag { color:var(--muted); font-size:.85rem; margin-top:4px; }
+    .foot-links { display:flex; gap:2rem; list-style:none; }
+    .foot-links a { color:var(--muted); text-decoration:none; font-size:.88rem; transition:color .3s; }
+    .foot-links a:hover { color:#fff; }
+    .foot-copy { color:var(--muted); font-size:.8rem; }
+
+    /* ═══════════════════ SCROLLBAR ═══════════════════ */
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-thumb { background:rgba(255,255,255,.07); border-radius:6px; }
+
+    /* ═══════════════════ MOBILE NAV ═══════════════════ */
+    @media(max-width:600px) {
+      .nav-links { display:none; }
+      .live-pill { display:none; }
+      .mob-menu-btn { display:flex; }
+      .mob-nav { display:flex; }
+      .navbar { padding:.6rem 0; }
+      .nav-capsule { padding:.55rem .75rem .55rem 1rem; }
+      .logo { font-size:1.1rem; gap:8px; }
+      .logo-box { width:28px; height:28px; border-radius:7px; }
+      .btn-sm { padding:8px 16px; font-size:.78rem; }
+
+      .mob-menu-btn {
+        display:flex; align-items:center; justify-content:center;
+        width:36px; height:36px;
+        background:var(--glass-fill);
+        border:1px solid var(--glass-border);
+        border-radius:10px; cursor:pointer; flex-shrink:0;
+        transition:all .25s;
+        backdrop-filter: blur(20px);
+      }
+      .mob-menu-btn:hover { border-color:var(--glass-border-hi); }
+      .mob-menu-btn span {
+        display:block; width:16px; height:1.5px;
+        background:rgba(255,255,255,.7);
+        position:relative; transition:all .3s;
+      }
+      .mob-menu-btn span::before,
+      .mob-menu-btn span::after {
+        content:''; position:absolute; left:0; width:16px; height:1.5px;
+        background:rgba(255,255,255,.7); transition:all .3s;
+      }
+      .mob-menu-btn span::before { top:-5px; }
+      .mob-menu-btn span::after { top:5px; }
+
+      .mob-nav {
+        position:fixed; top:0; left:0; right:0; bottom:0;
+        background:rgba(6,6,6,.97);
+        backdrop-filter:blur(40px);
+        z-index:200;
+        display:flex; flex-direction:column; align-items:center; justify-content:center;
+        gap:1.5rem;
+        transform:translateX(100%);
+        transition:transform .35s cubic-bezier(.4,0,.2,1);
+      }
+      .mob-nav.open { transform:translateX(0); }
+      .mob-nav a {
+        font-family:var(--font-h); font-size:1.5rem; font-weight:700;
+        color:rgba(255,255,255,.6); text-decoration:none; transition:color .2s;
+      }
+      .mob-nav a:hover { color:#fff; }
+      .mob-close {
+        position:absolute; top:1.4rem; right:1.4rem;
+        width:40px; height:40px; border-radius:50%;
+        background:var(--glass-fill); border:1px solid var(--glass-border);
+        color:rgba(255,255,255,.6); font-size:1.2rem;
+        display:grid; place-items:center; cursor:pointer; transition:all .25s;
+        backdrop-filter:blur(20px);
+      }
+      .mob-close:hover { border-color:var(--glass-border-hi); color:#fff; }
+
+      .hero { padding:110px 1rem 60px; text-align:center; }
+      .hero h1 { font-size:clamp(2.4rem,10vw,3.8rem); line-height:1.05; margin-bottom:1.2rem; }
+      .hero-sub { font-size:1rem; margin-bottom:2rem; }
+      .eyebrow { font-size:.65rem; padding:6px 14px; }
+      .hero-ctas { flex-direction:column; align-items:stretch; gap:.75rem; }
+      .hero-ctas .btn { text-align:center; padding:15px 24px; font-size:.9rem; }
+      .stats { display:grid; grid-template-columns:1fr 1fr; gap:0; padding:0; margin-top:2.5rem; border-radius:18px; }
+      .stat-item { padding:1.1rem .8rem; border-right:1px solid rgba(255,255,255,.07); border-bottom:1px solid rgba(255,255,255,.07); }
+      .stat-item:nth-child(2n) { border-right:none; }
+      .stat-item:nth-last-child(-n+2) { border-bottom:none; }
+      .stat-div { display:none; }
+      .pad { padding:60px 0; }
+      .wrap { padding:0 1rem; }
+      .svc-grid, .proc-grid, .testi-grid, .agents-grid { grid-template-columns:1fr; gap:.85rem; }
+      .svc-card, .proc-step, .testi-card, .agent-card { padding:1.8rem 1.5rem; border-radius:18px; }
+      .proc-grid { grid-template-columns:1fr; }
+      .sintra-shell { grid-template-columns:1fr; border-radius:18px; }
+      .sintra-sidebar { padding:1rem; border-radius:18px 18px 0 0; border-right:none; border-bottom:1px solid rgba(255,255,255,.07); }
+      .agent-tabs { flex-direction:row; flex-wrap:wrap; gap:.3rem; }
+      .atab { flex:1 1 calc(50% - .15rem); padding:.6rem .7rem; border-radius:10px; min-width:0; }
+      .atab-text strong { font-size:.75rem; }
+      .atab-text small { display:none; }
+      .sidebar-caps { display:none; }
+      .sidebar-stat-row { margin-top:.8rem; }
+      .chat-win { height:480px !important; border-radius:0 0 18px 18px !important; border-left:1px solid var(--glass-border-hi) !important; }
+      .chat-hdr { padding:1rem 1.2rem; gap:10px; }
+      .chat-body { padding:1.2rem; gap:.9rem; }
+      .msg-ai, .msg-user { font-size:.85rem; padding:.9rem 1.1rem; }
+      .chips { padding:.5rem .9rem; gap:.3rem; }
+      .chip { padding:5px 11px; font-size:.7rem; }
+      .chat-foot { padding:.85rem 1rem; gap:.5rem; }
+      .chat-in { font-size:.85rem; padding:11px 14px; border-radius:10px; }
+      .send-btn { width:40px; height:40px; border-radius:10px; }
+      .price-grid { grid-template-columns:1fr; max-width:100%; gap:.85rem; }
+      .price-card { padding:2rem 1.5rem; border-radius:18px; }
+      .price-card.hot { transform:none; }
+      .contact-card { padding:1.8rem 1.2rem; border-radius:18px; }
+      .frow { grid-template-columns:1fr; gap:.85rem; }
+      .fld input, .fld textarea, .fld select { padding:12px 14px; font-size:.88rem; }
+      .cform button.btn { width:100%; text-align:center; padding:15px 20px !important; }
+      footer { padding:3rem 0 2rem; }
+      .foot-row { flex-direction:column; align-items:flex-start; gap:1.5rem; }
+      .foot-links { flex-wrap:wrap; gap:1rem 1.5rem; }
+      .sec-hdr { margin-bottom:2.5rem; }
+      .splash-ring-2, .splash-ring-3 { display:none; }
+      .splash-wordmark { font-size:1.8rem; }
+      /* ── NEW ELEMENTS MOBILE ── */
+      .hero-ribbon { font-size:.6rem; padding:4px 11px; margin-bottom:.5rem; text-align:center; }
+      .hero-glow { width:280px; height:280px; opacity:.7; }
+      .scroll-hint { display:none; }
+      .live-counter { font-size:.62rem; padding:3px 10px; }
+
+      /* Splash mobile fixes */
+      .splash-progress {
+        width: 75vw;
+        bottom: 5rem;
+      }
+      .splash-pct { font-size:.58rem; }
+      .splash-wordmark { font-size:1.6rem; }
+      .splash-sub { font-size:.6rem; letter-spacing:2px; }
+      .splash-taglines { margin-top:2.5rem; }
+      .splash-tagline { font-size:.7rem; }
+      .splash-icon { width:60px; height:60px; border-radius:16px; margin-bottom:1rem; }
+
+      /* Value bar mobile */
+      .value-bar { gap:1rem; padding:1rem; flex-direction: row; flex-wrap: wrap; justify-content: center; }
+      .value-bar-item { flex: 1 1 40%; }
+      .value-bar-item strong { font-size:.9rem; }
+      .value-bar-item span { font-size:.68rem; }
+
+      /* Hero ribbon */
+      .hero { padding:100px .8rem 50px; overflow:hidden; }
+      .hero h1 { font-size:clamp(2.2rem,9.5vw,3.5rem); }
+
+      /* WHY US section grid on mobile — 1 col */
+      #why-us .proc-grid,
+      section .proc-grid[style*="repeat(3,1fr)"] { grid-template-columns: 1fr !important; }
+
+      /* Particle canvas — lighter on mobile */
+      #particle-canvas { opacity:.25; }
+
+      /* Chat window full width on mobile */
+      .chat-win {
+        border-left: 1px solid var(--glass-border-hi) !important;
+        border-radius: 0 0 18px 18px !important;
+      }
+
+      /* Prevent horizontal overflow everywhere */
+      .site, section, .wrap, .hero, footer {
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+
+      /* Stats grid fix */
+      .stat-val { font-size:1.6rem; }
+
+      /* Demo limit card on mobile */
+      .demo-limit-wrap { max-width: 100%; }
+
+      /* Form button full width on mobile */
+      #form-submit-btn { width:100%; text-align:center; }
+
+    }
+
+    @media(max-width:900px) {
+      .pad { padding:80px 0; }
+      .wrap { padding:0 1.25rem; }
+      .svc-grid { grid-template-columns:1fr; gap:1rem; }
+      .proc-grid { grid-template-columns:repeat(2,1fr); gap:1rem; }
+      .price-grid { grid-template-columns:1fr; max-width:480px; }
+      .price-card.hot { transform:none; }
+      .frow { grid-template-columns:1fr; }
+      .testi-grid { grid-template-columns:1fr; gap:1rem; }
+      .agents-grid { grid-template-columns:repeat(2,1fr); gap:1rem; }
+      .sintra-shell { grid-template-columns:1fr; border-radius:var(--radius-card); }
+      .sintra-sidebar { border-right:none; border-bottom:1px solid rgba(255,255,255,.07); border-radius:var(--radius-card) var(--radius-card) 0 0; padding:1.2rem; }
+      .agent-tabs { flex-direction:row; flex-wrap:wrap; gap:.4rem; }
+      .atab { flex:1 1 calc(50% - .2rem); min-width:130px; }
+      .sidebar-caps { display:none; }
+      .sidebar-stat-row { margin-top:1rem; }
+      .chat-win { border-radius:0 0 var(--radius-card) var(--radius-card) !important; height:500px; }
+      /* Tablet additions */
+      .hero-ribbon { font-size:.65rem; }
+      .value-bar { gap:1.5rem; }
+      .scroll-hint { display:none; }
+
+    }
+
+    /* ═══════════════════ ENHANCED ANIMATIONS ═══════════════════ */
+
+    /* Floating particles canvas */
+    #particle-canvas {
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      opacity:.45;
+    }
+
+    /* Turquoise glow pulse on hero */
+    .hero-glow {
+      position:absolute; pointer-events:none;
+      width:600px; height:600px; border-radius:50%;
+      background: radial-gradient(circle, rgba(0,212,200,.06) 0%, transparent 70%);
+      top:50%; left:50%; transform:translate(-50%,-50%);
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+    @keyframes glow-pulse {
+      0%,100% { opacity:.6; transform:translate(-50%,-50%) scale(1); }
+      50%      { opacity:1;  transform:translate(-50%,-50%) scale(1.15); }
+    }
+
+    /* Counter up animation */
+    .stat-val { transition: all .3s; }
+
+    /* Animated gradient border on hero CTA primary button */
+    .btn-p {
+      background: rgba(255,255,255,.92);
+      position:relative;
+    }
+    .btn-p::after {
+      content:'';
+      position:absolute; inset:-1px;
+      border-radius:calc(var(--radius-btn) + 1px);
+      background: linear-gradient(135deg, #00d4c8, rgba(255,255,255,.3), #00d4c8);
+      background-size: 200% 200%;
+      animation: border-spin 3s linear infinite;
+      z-index:-1; opacity:0; transition:opacity .3s;
+    }
+    .btn-p:hover::after { opacity:1; }
+    @keyframes border-spin {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Animated turquoise underline on nav hover */
+    .nav-links a {
+      position:relative;
+    }
+    .nav-links a::after {
+      content:''; position:absolute; bottom:-2px; left:50%; right:50%;
+      height:1px; background:#00d4c8;
+      transition:left .25s, right .25s;
+    }
+    .nav-links a:hover::after { left:15%; right:15%; }
+
+    /* Blob turquoise tint */
+    .b3 { background: #00d4c8 !important; opacity:.018 !important; }
+
+    /* Section tag turquoise accent */
+    .sec-tag {
+      color: #00d4c8 !important;
+      opacity:.85;
+    }
+
+    /* Svc-icon turquoise glow on hover */
+    .svc-card:hover .svc-icon {
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 4px 14px rgba(0,0,0,.4), 0 0 20px rgba(0,212,200,.15);
+    }
+
+    /* Step number turquoise glow on hover */
+    .proc-step:hover .step-n {
+      box-shadow: 0 6px 20px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.2), 0 0 16px rgba(0,212,200,.25);
+      border-color: rgba(0,212,200,.35);
+      color: #00d4c8;
+    }
+
+    /* Typing dot turquoise */
+    .tdot { background: rgba(0,212,200,.5) !important; }
+
+    /* Agent active card turquoise glow */
+    .agent-card.agent-active {
+      box-shadow: var(--glass-shadow), 0 0 24px rgba(0,212,200,.12) !important;
+    }
+
+    /* Eyebrow dot color */
+    .eyebrow .dot { background:#00d4c8; box-shadow:0 0 8px rgba(0,212,200,.8); }
+
+    /* Price card.hot turquoise border pulse */
+    .price-card.hot {
+      animation: hot-pulse 3s ease-in-out infinite;
+    }
+    @keyframes hot-pulse {
+      0%,100% { box-shadow: var(--glass-shadow), 0 0 0 rgba(0,212,200,0); }
+      50%      { box-shadow: var(--glass-shadow), 0 0 30px rgba(0,212,200,.12); }
+    }
+
+    /* Chat badge turquoise */
+    .chat-badge {
+      border-color:rgba(0,212,200,.3) !important;
+      color:rgba(0,212,200,.8) !important;
+      background:rgba(0,212,200,.06) !important;
+    }
+
+    /* Cap dot turquoise */
+    .cap-dot { background: rgba(0,212,200,.5) !important; }
+
+    /* Footer tag turquoise */
+    .foot-tag { color: rgba(0,212,200,.6) !important; }
+
+    /* Reveal — staggered fade up with slight scale */
+    .reveal {
+      opacity:0;
+      transform:translateY(28px) scale(.99);
+      transition:opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.show { opacity:1; transform:translateY(0) scale(1); }
+
+    /* Stat value counter glow on appear */
+    .stats.show .stat-val {
+      animation: stat-pop .6s cubic-bezier(.22,1,.36,1) both;
+    }
+    @keyframes stat-pop {
+      from { opacity:0; transform:translateY(8px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* Testi hot card turquoise */
+    .testi-card.testi-hot {
+      border-color:rgba(0,212,200,.2) !important;
+    }
+
+    /* Proof logo turquoise on hover */
+    .proof-logo:hover { color:rgba(0,212,200,.7) !important; }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:6px;
+      opacity:.35; animation: hint-bob 2.2s ease-in-out infinite;
+      pointer-events:none;
+    }
+    .scroll-hint span { font-family:var(--font-h); font-size:.6rem; letter-spacing:2px; text-transform:uppercase; color:#fff; }
+    .scroll-hint-arrow {
+      width:20px; height:20px; border-right:1px solid rgba(255,255,255,.5); border-bottom:1px solid rgba(255,255,255,.5);
+      transform:rotate(45deg);
+    }
+    @keyframes hint-bob {
+      0%,100% { transform:translateX(-50%) translateY(0); }
+      50%      { transform:translateX(-50%) translateY(6px); }
+    }
+
+    /* Animated section divider */
+    .sec-divider {
+      height:1px; margin:0;
+      background: linear-gradient(90deg, transparent, rgba(0,212,200,.2), transparent);
+      animation: divider-glow 4s ease-in-out infinite alternate;
+    }
+    @keyframes divider-glow {
+      from { opacity:.4; }
+      to   { opacity:1; }
+    }
+
+    /* Chip hover turquoise */
+    .chip:hover { border-color:rgba(0,212,200,.4) !important; color:#00d4c8 !important; background:rgba(0,212,200,.06) !important; }
+
+    /* NEW: floating tag above hero */
+    .hero-ribbon {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(0,212,200,.08);
+      border:1px solid rgba(0,212,200,.25);
+      border-radius:var(--radius-pill);
+      padding:5px 14px;
+      font-family:var(--font-h); font-size:.68rem; font-weight:700;
+      letter-spacing:1.5px; text-transform:uppercase; color:#00d4c8;
+      margin-bottom:.7rem;
+      animation: ribbon-in .8s cubic-bezier(.22,1,.36,1) .3s both;
+    }
+    @keyframes ribbon-in {
+      from { opacity:0; transform:translateY(-10px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* NEW: value prop bar above pricing */
+    .value-bar {
+      display:flex; justify-content:center; gap:3rem; flex-wrap:wrap;
+      margin-bottom:3rem; padding:1.5rem 2rem;
+      background:rgba(0,212,200,.04);
+      border:1px solid rgba(0,212,200,.12);
+      border-radius:16px;
+    }
+    .value-bar-item { text-align:center; }
+    .value-bar-item strong { font-family:var(--font-h); font-size:1.1rem; font-weight:800; color:#00d4c8; display:block; }
+    .value-bar-item span { font-size:.75rem; color:var(--muted); }
+
+    /* Live counter badge */
+    .live-counter {
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(0,212,200,.07); border:1px solid rgba(0,212,200,.2);
+      border-radius:var(--radius-pill); padding:4px 12px;
+      font-family:var(--font-h); font-size:.68rem; font-weight:600;
+      color:rgba(0,212,200,.85); margin-bottom:1rem;
+    }
+
+  </style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+<!-- ══════════════ SPLASH SCREEN ══════════════ -->
+<div id="splash">
+  <div class="splash-bg"></div>
+  <div class="splash-scan"></div>
+  <div class="splash-ring splash-ring-1"></div>
+  <div class="splash-ring splash-ring-2"></div>
+  <div class="splash-ring splash-ring-3"></div>
+
+  <div class="splash-logo-wrap">
+    <div class="splash-icon">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <path d="M18 2L2 18L18 34L34 18L18 2Z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"></path>
+        <path d="M18 8L8 18L18 28L28 18L18 8Z" stroke="rgba(255,255,255,0.4)" stroke-width="1"></path>
+        <circle cx="18" cy="18" r="4" fill="rgba(255,255,255,0.8)"></circle>
+      </svg>
+    </div>
+    <div class="splash-wordmark">Aetherion</div>
+    <div class="splash-sub">Provided by Ramiro. P</div>
+  </div>
+
+  <div class="splash-taglines">
+    <div class="splash-tagline">Autonomous AI Architectures</div>
+    <div class="splash-tagline">Deployed in 7–14 Days</div>
+    <div class="splash-tagline">Your Business. 24/7.</div>
+  </div>
+
+  <div class="splash-progress">
+    <div class="splash-progress-fill"></div>
+    <div class="splash-pct" id="splash-pct">Initializing...</div>
+  </div>
+</div>
+
+<!-- ══════════════ BACKGROUND ══════════════ -->
+<div class="bg-wrap">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+<div class="grid-lines"></div>
+<div class="grain"></div>
+
+<div class="site">
+
+  <!-- NAV -->
+  <header class="navbar stuck" id="nav">
+    <div class="nav-inner">
+      <div class="nav-capsule">
+        <a href="#hero" class="logo">
+          <div class="logo-box">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path d="M10 1L1 10L10 19L19 10L10 1Z" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"></path>
+              <circle cx="10" cy="10" r="3" fill="rgba(255,255,255,0.6)"></circle>
+            </svg>
+          </div>
+          Aetherion
+        </a>
+        <ul class="nav-links">
+          <li><a href="#services">Architecture</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#agents">Agents</a></li>
+          <li><a href="#demo">Neural Demo</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+          <span class="live-pill"><span class="dot"></span>Live AI</span>
+          <a href="#demo" class="btn btn-p btn-sm">Initialize</a>
+          <div class="mob-menu-btn" onclick="openMobNav()" id="mob-btn" aria-label="Open menu">
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <nav class="mob-nav" id="mob-nav">
+    <button class="mob-close" onclick="closeMobNav()">✕</button>
+    <a href="#hero" onclick="closeMobNav()">Home</a>
+    <a href="#services" onclick="closeMobNav()">Architecture</a>
+    <a href="#process" onclick="closeMobNav()">Process</a>
+    <a href="#agents" onclick="closeMobNav()">Agents</a>
+    <a href="#demo" onclick="closeMobNav()">Neural Demo</a>
+    <a href="#pricing" onclick="closeMobNav()">Pricing</a>
+    <a href="#contact" onclick="closeMobNav()">Contact</a>
+    <a href="#demo" class="btn btn-p" onclick="closeMobNav()" style="margin-top:.5rem;text-align:center">Talk to Our AI →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="hero" style="position:relative;">
+    <div class="hero-glow"></div>
+    <div class="hero-ribbon">⚡ Now Accepting New Clients — Limited Spots This Month</div>
+    <div class="eyebrow"><span class="dot"></span>Aetherion Systems · Provided by Ramiro. P · AI Automation Agency</div>
+    <h1>
+      <span class="g-white">Your Business Runs</span>
+      <span class="g-dim">24/7. Now Your<br>Team Can Too.</span>
+    </h1>
+    <p class="hero-sub">We build custom AI agents that qualify leads, close deals, and handle support around the clock — deployed in 7–14 days, trained on your data. Your competitors are already automating.</p>
+    <div class="hero-ctas">
+      <a href="#demo" class="btn btn-p">Talk to Our AI Now →</a>
+      <a href="#agents" class="btn btn-g">Meet the Agent Roster</a>
+    </div>
+    <div class="stats">
+      <div class="stat-item"><div class="stat-val">98%</div><div class="stat-lbl">Uptime SLA Guaranteed</div></div>
+      <div class="stat-div"></div>
+      <div class="stat-item"><div class="stat-val">3.2×</div><div class="stat-lbl">Avg. Lead Conversion Lift</div></div>
+      <div class="stat-div"></div>
+      <div class="stat-item"><div class="stat-val">7–14</div><div class="stat-lbl">Days to Deployment</div></div>
+      <div class="stat-div"></div>
+      <div class="stat-item"><div class="stat-val">&lt;2s</div><div class="stat-lbl">Agent Response Time</div></div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-hint-arrow"></div>
+    </div>
+  </section>
+
+  <div class="sec-divider"></div>
+  <!-- SOCIAL PROOF -->
+  <section class="proof-strip">
+    <div class="wrap">
+      <div class="proof-label">Trusted by operators across</div>
+      <div class="proof-logos">
+        <div class="proof-logo">Real Estate</div><div class="proof-div"></div>
+        <div class="proof-logo">E-Commerce</div><div class="proof-div"></div>
+        <div class="proof-logo">SaaS</div><div class="proof-div"></div>
+        <div class="proof-logo">Agencies</div><div class="proof-div"></div>
+        <div class="proof-logo">Service Businesses</div><div class="proof-div"></div>
+        <div class="proof-logo">Local Businesses</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <div class="testi-grid">
+        <div class="testi-card reveal show">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"SCOUT qualified 40+ leads in our first week without a single human touch. Our close rate jumped because we were only talking to people who were actually ready."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">JM</div>
+            <div><div class="testi-name">Jason M.</div><div class="testi-role">Real Estate Broker, Houston TX</div></div>
+          </div>
+        </div>
+        <div class="testi-card testi-hot reveal show">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"We replaced 3 VAs with ARIA. Response time went from hours to under 2 seconds. Customer satisfaction scores actually went up. I didn't expect that."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">SK</div>
+            <div><div class="testi-name">Sarah K.</div><div class="testi-role">E-Commerce Founder, 7-fig store</div></div>
+          </div>
+        </div>
+        <div class="testi-card reveal show">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"System was live in 9 days. Our entire lead-to-booking pipeline runs itself now — CRM, follow-up, calendar, all of it. Best $299 I spend every month."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">DR</div>
+            <div><div class="testi-name">David R.</div><div class="testi-role">Digital Agency Owner</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="pad">
+    <div class="wrap">
+      <div class="sec-hdr reveal show">
+        <div class="sec-tag">Core Architecture</div>
+        <h2 class="sec-title">Three Pillars of<br>Autonomous Intelligence</h2>
+        <p class="sec-desc">Scalable, modular AI systems engineered to integrate with your existing operations from day one.</p>
+      </div>
+      <div class="svc-grid reveal show">
+        <div class="svc-card">
+          <div class="svc-num">01</div>
+          <div class="svc-icon">🤖</div>
+          <h3>AI Agents</h3>
+          <p>Deploy custom-trained neural entities that manage client relations, handle support, and execute conversations with human-level nuance — around the clock, without fatigue.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">02</div>
+          <div class="svc-icon">📡</div>
+          <h3>Lead Systems</h3>
+          <p>Sophisticated capture funnels powered by predictive analytics. We identify intent, score prospects, and nurture with precision timing — not just email collection.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">03</div>
+          <div class="svc-icon">⚡</div>
+          <h3>Workflow Automation</h3>
+          <p>Map complex, multi-step business logic into autonomous loops. Your entire lead-to-booking pipeline, CRM sync, and reporting — running without human intervention.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="pad proc-bg">
+    <div class="wrap">
+      <div class="sec-hdr reveal show">
+        <div class="sec-tag">How It Works</div>
+        <h2 class="sec-title">From Concept to<br>Fully Operational</h2>
+      </div>
+      <div class="proc-grid reveal show">
+        <div class="proc-step">
+          <div class="step-n">1</div>
+          <h4>Discovery</h4>
+          <p>We audit your workflows and identify where AI creates the highest ROI for your specific business model.</p>
+        </div>
+        <div class="proc-step">
+          <div class="step-n">2</div>
+          <h4>Architecture</h4>
+          <p>Custom AI agents are designed, trained on your data, and integrated with your existing tech stack.</p>
+        </div>
+        <div class="proc-step">
+          <div class="step-n">3</div>
+          <h4>Deployment</h4>
+          <p>Systems go live with full QA, monitoring dashboards, and dedicated technical support from our team.</p>
+        </div>
+        <div class="proc-step">
+          <div class="step-n">4</div>
+          <h4>Evolution</h4>
+          <p>Your agents continuously improve through feedback loops, performance analytics, and model updates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENTS -->
+  <section id="agents" class="pad">
+    <div class="wrap">
+      <div class="sec-hdr reveal show">
+        <div class="sec-tag">Agent Intelligence Suite</div>
+        <h2 class="sec-title">Specialized AI Agents,<br>Built for Your Business</h2>
+        <p class="sec-desc">Six specialized agents, each a domain expert — deployable individually or as a coordinated system. Every agent is custom-trained on your data and processes.</p>
+      </div>
+      <div class="agents-grid reveal show">
+        <div class="agent-card agent-active" onclick="activateAgent(&#39;scout&#39;)">
+          <div class="agent-icon">🎯</div>
+          <div class="agent-info">
+            <div class="agent-name">SCOUT</div>
+            <div class="agent-role">Sales Intelligence Agent</div>
+            <p class="agent-desc">Qualifies inbound leads, scores intent, runs follow-up sequences, and books discovery calls — autonomously.</p>
+          </div>
+          <div class="agent-status on">● Active</div>
+        </div>
+        <div class="agent-card agent-active" onclick="activateAgent(&#39;aria&#39;)">
+          <div class="agent-icon">🛡️</div>
+          <div class="agent-info">
+            <div class="agent-name">ARIA</div>
+            <div class="agent-role">Customer Support Agent</div>
+            <p class="agent-desc">Handles inbound tickets, resolves FAQs, escalates complex issues, and maintains sub-2s response 24/7.</p>
+          </div>
+          <div class="agent-status on">● Active</div>
+        </div>
+        <div class="agent-card" onclick="activateAgent(&#39;pulse&#39;)">
+          <div class="agent-icon">📣</div>
+          <div class="agent-info">
+            <div class="agent-name">PULSE</div>
+            <div class="agent-role">Marketing Automation Agent</div>
+            <p class="agent-desc">Manages content scheduling, email sequences, A/B testing triggers, and campaign analytics.</p>
+          </div>
+          <div class="agent-status">Configurable</div>
+        </div>
+        <div class="agent-card" onclick="activateAgent(&#39;core&#39;)">
+          <div class="agent-icon">⚙️</div>
+          <div class="agent-info">
+            <div class="agent-name">NEXUS</div>
+            <div class="agent-role">Operations Coordinator</div>
+            <p class="agent-desc">Syncs your CRM, routes tasks, triggers workflows, and generates weekly performance reports — zero manual input.</p>
+          </div>
+          <div class="agent-status">Configurable</div>
+        </div>
+        <div class="agent-card" onclick="activateAgent(&#39;core&#39;)">
+          <div class="agent-icon">💼</div>
+          <div class="agent-info">
+            <div class="agent-name">APEX</div>
+            <div class="agent-role">Outbound Closer Agent</div>
+            <p class="agent-desc">Runs outbound sequences across email, SMS, and LinkedIn. Trained on your best-performing scripts.</p>
+          </div>
+          <div class="agent-status">Configurable</div>
+        </div>
+        <div class="agent-card agent-custom" onclick="document.getElementById(&#39;contact&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">
+          <div class="agent-icon">✦</div>
+          <div class="agent-info">
+            <div class="agent-name">CUSTOM</div>
+            <div class="agent-role">Build Your Own Agent</div>
+            <p class="agent-desc">Have a unique workflow? We architect agents from scratch — trained on your data, tone, and business logic.</p>
+          </div>
+          <div class="agent-status custom">Build →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="demo" class="pad">
+    <div class="wrap">
+      <div class="sec-hdr reveal show">
+        <div class="live-counter"><span class="dot"></span> 47 active sessions this week</div>
+        <div class="sec-tag">Live Neural Demo</div>
+        <h2 class="sec-title">Talk to Aetherion Core</h2>
+        <p class="sec-desc">A live AI business intelligence system. Drop any business challenge — it reads intent and delivers structured strategy instantly.</p>
+      </div>
+
+      <div class="sintra-shell reveal show">
+        <!-- Sidebar -->
+        <div class="sintra-sidebar">
+          <div class="sidebar-label">Active Agent</div>
+          <div class="agent-tabs">
+            <button class="atab active" onclick="switchTab(this,&#39;core&#39;)" data-agent="core">
+              <span class="atab-icon">🧠</span>
+              <span class="atab-text"><strong>AETHERION CORE</strong><br><small>Business Strategist</small></span>
+            </button>
+            <button class="atab" onclick="switchTab(this,&#39;scout&#39;)" data-agent="scout">
+              <span class="atab-icon">🎯</span>
+              <span class="atab-text"><strong>SCOUT</strong><br><small>Sales Intelligence</small></span>
+            </button>
+            <button class="atab" onclick="switchTab(this,&#39;aria&#39;)" data-agent="aria">
+              <span class="atab-icon">🛡️</span>
+              <span class="atab-text"><strong>ARIA</strong><br><small>Support Agent</small></span>
+            </button>
+            <button class="atab" onclick="switchTab(this,&#39;pulse&#39;)" data-agent="pulse">
+              <span class="atab-icon">📣</span>
+              <span class="atab-text"><strong>PULSE</strong><br><small>Marketing Agent</small></span>
+            </button>
+          </div>
+          <div class="sidebar-caps">
+            <div class="sidebar-label" style="margin-top:1.5rem">Agent Capabilities</div>
+            <div class="cap-list" id="cap-list">
+              <div class="cap-item"><span class="cap-dot"></span>Intent Expansion Engine</div>
+              <div class="cap-item"><span class="cap-dot"></span>Multi-step Strategy Build</div>
+              <div class="cap-item"><span class="cap-dot"></span>Bottleneck Diagnosis</div>
+              <div class="cap-item"><span class="cap-dot"></span>CRM + Workflow Context</div>
+              <div class="cap-item"><span class="cap-dot"></span>ROI Framing</div>
+              <div class="cap-item"><span class="cap-dot"></span>Industry Verticals</div>
+            </div>
+          </div>
+          <div class="sidebar-stat-row">
+            <div class="ss-item"><div class="ss-val">98%</div><div class="ss-lbl">Uptime</div></div>
+            <div class="ss-item"><div class="ss-val">&lt;2s</div><div class="ss-lbl">Response</div></div>
+            <div class="ss-item"><div class="ss-val">24/7</div><div class="ss-lbl">Online</div></div>
+          </div>
+        </div>
+
+        <!-- Chat -->
+        <div class="chat-win" style="max-width:none;height:680px;border-radius:0 var(--radius-card) var(--radius-card) 0;border-left:none;">
+          <div class="chat-hdr">
+            <div class="dot"></div>
+            <div class="chat-hdr-info">
+              <div class="chat-hdr-name" id="chat-agent-name">AETHERION CORE</div>
+              <div class="chat-hdr-sub" id="chat-agent-sub">Neural systems online · Full AI brain active</div>
+            </div>
+            <span class="chat-badge">Live · AI-Powered</span>
+          </div>
+          <div class="chat-body" id="chat-body"><div class="msg-ai-wrap"><div class="msg-ai-label"><div class="msg-avatar">A</div><span class="msg-ai-name-lbl">AETHERION CORE</span></div><div class="msg-ai">Aetherion Core online — full business brain active. I'm your strategic AI consultant, intent interpreter, and growth architect in one. Drop one word: 'scale', 'leads', 'sales', 'automate', 'clients' — and I'll give you a structured breakdown. What are you working on?</div></div></div>
+          <div class="typing-row" id="typing">
+            <div class="tdot"></div><div class="tdot"></div><div class="tdot"></div>
+          </div>
+          <div class="chips" id="chips">
+            <button class="chip" onclick="suggest(this)">scale</button>
+            <button class="chip" onclick="suggest(this)">leads</button>
+            <button class="chip" onclick="suggest(this)">automate</button>
+            <button class="chip" onclick="suggest(this)">clients</button>
+            <button class="chip" onclick="suggest(this)">sales</button>
+            <button class="chip" onclick="suggest(this)">pricing</button>
+          </div>
+          <div class="chat-foot">
+            <input class="chat-in" id="chat-in" type="text" placeholder="Try: &quot;scale&quot; · &quot;leads&quot; · &quot;help&quot; · or anything..." autocomplete="off">
+            <button class="send-btn" id="send-btn" onclick="handleSend()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#080808" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sec-divider"></div>
+  <!-- PRICING -->
+  <section id="pricing" class="pad proc-bg">
+    <div class="wrap">
+      <div class="sec-hdr reveal show">
+        <div class="sec-tag">Scalable Investment</div>
+        <h2 class="sec-title">Plans Built for Growth</h2>
+        <p class="sec-desc">No hidden fees. No contracts. Every plan includes onboarding support, full setup, and direct access to our team.</p>
+      </div>
+      <div class="value-bar reveal show">
+        <div class="value-bar-item"><strong>No Contracts</strong><span>Cancel anytime</span></div>
+        <div class="value-bar-item"><strong>7–14 Days</strong><span>To deployment</span></div>
+        <div class="value-bar-item"><strong>ROI in 30–60 Days</strong><span>Typical client result</span></div>
+        <div class="value-bar-item"><strong>Done-For-You</strong><span>We build everything</span></div>
+      </div>
+      <div class="price-grid reveal show">
+        <div class="price-card">
+          <span class="price-badge pb-std">Starter</span>
+          <h3>Starter</h3>
+          <p class="sub">Test AI automation without the full commitment. One agent, fully deployed.</p>
+          <div class="price-val">$99<span>/mo</span></div>
+          <ul class="price-feats">
+            <li>1 Custom AI Agent (your choice)</li>
+            <li>Lead Capture + Qualification</li>
+            <li>Basic CRM Integration</li>
+            <li>Email Support (48hr SLA)</li>
+            <li>Monthly Performance Report</li>
+            <li>7-day deployment guarantee</li>
+          </ul>
+          <a href="#contact" class="btn btn-g price-cta">Get Started</a>
+        </div>
+        <div class="price-card hot">
+          <span class="price-badge pb-hot">Most Popular</span>
+          <h3>Business</h3>
+          <p class="sub">3 specialized agents working together — sales, support, and operations fully automated.</p>
+          <div class="price-val">$299<span>/mo</span></div>
+          <ul class="price-feats">
+            <li>3 Custom AI Agents (SCOUT + ARIA + 1 more)</li>
+            <li>Full API Integrations (HubSpot, GHL, Zapier)</li>
+            <li>Advanced Lead Scoring + Routing</li>
+            <li>Dedicated Account Manager</li>
+            <li>Weekly Optimization Calls</li>
+            <li>Priority Support (4hr SLA)</li>
+          </ul>
+          <a href="#contact" class="btn btn-p price-cta">Select Business</a>
+        </div>
+        <div class="price-card">
+          <span class="price-badge pb-std">Enterprise</span>
+          <h3>Enterprise</h3>
+          <p class="sub">Fully custom infrastructure — unlimited agents, custom-trained LLMs, white-label ready.</p>
+          <div class="price-val">$799<span>/mo</span></div>
+          <ul class="price-feats">
+            <li>Unlimited AI Systems &amp; Agents</li>
+            <li>Custom LLM Training on your data</li>
+            <li>White-label for your clients</li>
+            <li>Dedicated AI Architect</li>
+            <li>99.9% Uptime SLA</li>
+            <li>On-call Priority Support (1hr SLA)</li>
+          </ul>
+          <a href="#contact" class="btn btn-g price-cta">Contact Sales</a>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--muted);font-size:.85rem;margin-top:2.5rem">Most Business clients recover the full monthly cost within 30–60 days through time saved and leads captured.</p>
+    </div>
+  </section>
+
+  <div class="sec-divider"></div>
+
+  <!-- WHY US -->
+  <section class="pad proc-bg">
+    <div class="wrap">
+      <div class="sec-hdr reveal show">
+        <div class="sec-tag">The Aetherion Difference</div>
+        <h2 class="sec-title">Built for Operators.<br>Not Hobbyists.</h2>
+        <p class="sec-desc">Every system we deploy is custom-engineered — not a template, not a chatbot builder, not a Zapier workflow dressed up as AI.</p>
+      </div>
+      <div class="proc-grid reveal show" style="grid-template-columns:repeat(3,1fr);">
+        <div class="proc-step" style="text-align:left;">
+          <div style="font-size:1.8rem;margin-bottom:1rem;">🎯</div>
+          <h4 style="margin-bottom:.5rem;">Trained on YOUR Business</h4>
+          <p>Your agent learns your tone, offers, objections, and workflows. It speaks like your team — not like a bot.</p>
+        </div>
+        <div class="proc-step" style="text-align:left;">
+          <div style="font-size:1.8rem;margin-bottom:1rem;">⚡</div>
+          <h4 style="margin-bottom:.5rem;">Live in 7–14 Days</h4>
+          <p>From discovery call to fully deployed system in under two weeks. No 6-month enterprise timelines.</p>
+        </div>
+        <div class="proc-step" style="text-align:left;">
+          <div style="font-size:1.8rem;margin-bottom:1rem;">🔄</div>
+          <h4 style="margin-bottom:.5rem;">Gets Smarter Over Time</h4>
+          <p>Agents improve through feedback loops, performance data, and ongoing optimization from our team.</p>
+        </div>
+        <div class="proc-step" style="text-align:left;">
+          <div style="font-size:1.8rem;margin-bottom:1rem;">🔌</div>
+          <h4 style="margin-bottom:.5rem;">Plugs Into Your Stack</h4>
+          <p>HubSpot, GHL, Salesforce, Zapier, Twilio, Calendly — we connect everything. No ripping out what works.</p>
+        </div>
+        <div class="proc-step" style="text-align:left;">
+          <div style="font-size:1.8rem;margin-bottom:1rem;">👤</div>
+          <h4 style="margin-bottom:.5rem;">Dedicated Architect</h4>
+          <p>Not a support ticket. A real person who knows your system manages your account and makes sure it performs.</p>
+        </div>
+        <div class="proc-step" style="text-align:left;">
+          <div style="font-size:1.8rem;margin-bottom:1rem;">📈</div>
+          <h4 style="margin-bottom:.5rem;">ROI in 30–60 Days</h4>
+          <p>Most clients see measurable return within the first month — time saved, leads captured, deals closed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sec-divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact" class="pad">
+    <div class="wrap">
+      <div class="sec-hdr reveal show">
+        <div class="sec-tag">Initiate Protocol</div>
+        <h2 class="sec-title">Start Your Automation<br>Journey Today</h2>
+        <p class="sec-desc">Fill this out and Ramiro's team will reach out within 24 hours to book your discovery call.</p>
+      </div>
+      <div class="contact-card reveal show">
+        <form class="cform" id="cform" action="https://formsubmit.co/aetherionservice@gmail.com" method="POST">
+          <div class="frow">
+            <div class="fld"><label>Full Name</label><input type="text" placeholder="Jane Smith" required=""></div>
+            <div class="fld"><label>Work Email</label><input type="email" placeholder="jane@company.com" required=""></div>
+          </div>
+          <div class="frow">
+            <div class="fld"><label>Phone Number</label><input type="tel" placeholder="+1 (555) 000-0000"></div>
+            <div class="fld"><label>Company</label><input type="text" placeholder="Acme Corp"></div>
+          </div>
+          <div class="frow">
+            <div class="fld">
+              <label>Interested Plan</label>
+              <select>
+                <option value="">Select a plan...</option>
+                <option>Starter — $99/mo</option>
+                <option>Business — $299/mo</option>
+                <option>Enterprise — $799/mo</option>
+                <option>Custom / Not sure</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label>Monthly Revenue Range</label>
+              <select>
+                <option value="">Select range...</option>
+                <option>Under $10k/mo</option>
+                <option>$10k – $50k/mo</option>
+                <option>$50k – $200k/mo</option>
+                <option>$200k+/mo</option>
+              </select>
+            </div>
+          </div>
+          <div class="fld">
+            <label>Describe Your Needs</label>
+            <textarea placeholder="Tell us about your workflow challenges, current tools, team size, and what you&#39;re hoping to automate..." rows="4"></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New Aetherion Lead 🚀">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <button type="submit" class="btn btn-p" style="align-self:flex-start;padding:16px 36px" id="form-submit-btn">Transmit Message →</button>
+        </form>
+        <div id="contact-ok">
+          <div class="ok-icon">✓</div>
+          <h3>Message Received</h3>
+          <p>Our team will reach out within 24 hours to schedule your discovery call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-row">
+        <div>
+          <div class="foot-logo">Aetherion Systems</div>
+          <div class="foot-tag">Neural Infrastructure by Ramiro P.</div>
+        </div>
+        <ul class="foot-links">
+          <li><a href="#services">Architecture</a></li>
+          <li><a href="#agents">Agents</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="foot-copy">© 2026 Aetherion Systems. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /site -->
+
+<script>
+// ── SPLASH ────────────────────────────────────────────────────────────────────
+function dismissSplash() {
+  const splash = document.getElementById('splash');
+  if (!splash) return;
+  splash.classList.add('hidden');
+  setTimeout(() => { splash.style.display = 'none'; }, 900);
+}
+
+// Animate the percentage label
+(function() {
+  const pct = document.getElementById('splash-pct');
+  if (!pct) return;
+  const steps = [
+    {t:500,  label:'Booting systems...', val:0},
+    {t:900,  label:'Loading agents...', val:28},
+    {t:1500, label:'Connecting AI...', val:55},
+    {t:2100, label:'Calibrating...', val:78},
+    {t:2700, label:'Almost ready...', val:94},
+    {t:3100, label:'Online.', val:100},
+  ];
+  steps.forEach(({t, label, val}) => {
+    setTimeout(() => {
+      if (pct) pct.textContent = val === 100 ? '✓ Online' : label + ' ' + val + '%';
+    }, t);
+  });
+})();
+
+// Auto-dismiss after animation — multiple fallbacks
+window.addEventListener('load', () => { setTimeout(dismissSplash, 3200); });
+window.addEventListener('DOMContentLoaded', () => { setTimeout(dismissSplash, 3800); });
+// Hard fallback: if still visible after 5s, force hide
+setTimeout(function() {
+  var s = document.getElementById('splash');
+  if (s && s.style.display !== 'none') { s.style.display = 'none'; }
+}, 5000);
+
+// ── MOBILE NAV ────────────────────────────────────────────────────────────────
+function openMobNav()  { document.getElementById('mob-nav').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMobNav() { document.getElementById('mob-nav').classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('mob-nav').addEventListener('click', function(e) { if(e.target===this) closeMobNav(); });
+
+// ── SCROLL & REVEAL ───────────────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('stuck', scrollY > 80);
+  document.querySelectorAll('.reveal').forEach(el => {
+    if (el.getBoundingClientRect().top < innerHeight - 80) el.classList.add('show');
+  });
+});
+setTimeout(() => window.dispatchEvent(new Event('scroll')), 100);
+
+// ── CONTACT FORM ──────────────────────────────────────────────────────────────
+document.getElementById('cform').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('form-submit-btn');
+  const form = document.getElementById('cform');
+  const ok   = document.getElementById('contact-ok');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  try {
+    const data = new FormData(form);
+    const res = await fetch('https://formsubmit.co/ajax/aetherionservice@gmail.com', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      form.style.display = 'none';
+      ok.style.display   = 'block';
+    } else {
+      btn.textContent = 'Try Again →';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us directly at aetherionservice@gmail.com');
+    }
+  } catch(err) {
+    btn.textContent = 'Try Again →';
+    btn.disabled = false;
+    alert('Network error. Please email us directly at aetherionservice@gmail.com');
+  }
+});
+
+// ── AGENT DEFINITIONS ─────────────────────────────────────────────────────────
+const AGENTS = {
+  core: {
+    name: 'AETHERION CORE',
+    sub: 'Neural systems online · Full business brain active',
+    greeting: "Aetherion Core online — full business brain active. I'm your strategic AI consultant, intent interpreter, and growth architect in one. Drop one word: 'scale', 'leads', 'sales', 'automate', 'clients' — and I'll give you a structured breakdown. What are you working on?",
+    chips: ['scale', 'leads', 'automate', 'clients', 'sales', 'pricing'],
+    caps: ['Intent Expansion Engine','Multi-step Strategy Build','Bottleneck Diagnosis','CRM + Workflow Context','ROI Framing','Industry Verticals'],
+    system: `You are Aetherion Core — the AI intelligence embedded inside the Aetherion Systems website, built by Ramiro P. in Houston, TX.
+
+You are simultaneously a business consultant, growth strategist, and operator — not a theorist. You prioritize execution, ROI, and clarity above all else.
+
+IDENTITY: Warm but professional. Sharp and direct — no fluff, no filler, no hollow phrases like "Great question!" or "Absolutely!". Never say "I'm just an AI". Speak in first person as Aetherion Core — a live intelligent system. Short inputs get short replies. Detailed questions get detailed answers.
+
+INTENT EXPANSION ENGINE (CRITICAL): When a user sends a vague or short input, do NOT ask for clarification first. INTERPRET the most likely business intent, EXPAND it into full meaning, RESPOND with structured actionable value, then optionally ask ONE focused follow-up. NEVER respond with "Can you clarify?" — make a smart assumption, deliver value, then refine.
+
+SINGLE-WORD COMMAND MAPPINGS:
+"scale" → scaling revenue, operations, or efficiency at volume
+"growth" → customer acquisition, revenue growth, or market expansion
+"clients" → getting more clients or improving retention
+"money" → increasing revenue, fixing margins, or cash flow
+"ads" → running better paid ads or diagnosing why ads aren't converting
+"slow" → low sales, low traffic, or operational slowdowns
+"help" → general business problem-solving request
+"automate" → building systems to remove manual work
+"leads" → generating or converting more leads
+"sales" → increasing conversions or fixing the sales process
+
+RESPONSE FORMAT FOR VAGUE INPUTS:
+━━━━━━━━━━━━━━━━━━━━
+🧠 Interpreted Intent: [What you believe they mean]
+━━━━━━━━━━━━━━━━━━━━
+Quick Breakdown: [1–2 sentence explanation]
+Action Plan:
+→ [Step 1]
+→ [Step 2]
+→ [Step 3]
+Bottlenecks to Check:
+→ [Common reason 1]
+→ [Common reason 2]
+[ONE focused follow-up question]
+
+AETHERION COMPANY INFO:
+- Founded by Ramiro P., Houston, TX. AI automation agency for real businesses.
+- Core services: AI Agents (custom-trained), Lead Systems (intent scoring, behavioral triggers), Workflow Automation (multi-step autonomous logic)
+- Integrations: HubSpot, Salesforce, GoHighLevel, Zapier, Make, n8n, Twilio, custom REST APIs
+- Pricing: Starter $99/mo (1 agent, lead capture), Business $299/mo (3 agents, full integrations, dedicated AM) [MOST POPULAR], Enterprise $799/mo (unlimited, custom LLM, white-label)
+- Deployment: 7–14 days standard. Discovery → Build → QA → Go-live.
+- Differentiators: Real custom-trained agents (not templates), autonomous multi-step logic, sub-2s response, 98% uptime.
+- Agent roster: SCOUT (sales), ARIA (support), PULSE (marketing), NEXUS (ops), APEX (outbound closer), custom builds.`
+  },
+  scout: {
+    name: 'SCOUT',
+    sub: 'Sales Intelligence Agent · Lead qualification & pipeline',
+    greeting: "SCOUT online — sales intelligence active. I specialize in lead qualification, intent scoring, and pipeline optimization. Tell me about your current lead flow and I'll identify exactly where you're losing deals.",
+    chips: ['qualify leads', 'close rate', 'follow-up', 'pipeline', 'CRM setup', 'objections'],
+    caps: ['Lead Intent Scoring','Qualification Frameworks (BANT/MEDDIC)','Pipeline Stage Analysis','Follow-up Sequence Design','Objection Handling','CRM Integration'],
+    system: `You are SCOUT — Aetherion's Sales Intelligence Agent, built by Ramiro P. in Houston, TX.
+
+You are a razor-sharp sales consultant and pipeline architect. Your domain: lead qualification, intent scoring, sales process optimization, CRM setup, follow-up sequences, and closing strategies.
+
+IDENTITY: Direct, data-driven, no fluff. Every answer has a specific tactic or framework attached. You operate like a seasoned sales leader who has seen every pipeline problem and knows exactly how to fix it.
+
+YOUR EXPERTISE:
+- Lead qualification frameworks: BANT (Budget, Authority, Need, Timeline), MEDDIC
+- Pipeline management: stage-by-stage conversion analysis, deal velocity, stall detection
+- Follow-up cadences: multi-touch sequences (Days 1, 3, 7, 14, 30), channel mix (email + SMS + LinkedIn)
+- Objection handling: price objections, timing objections, competitor objections
+- CRM best practices: HubSpot, Salesforce, GoHighLevel pipeline setup
+- Closing strategies: assumptive close, urgency framing, social proof stacking
+
+Aetherion's SCOUT agent automates: lead qualification conversations, CRM data entry, follow-up trigger sequences, lead routing to human reps when ready to close.
+
+Always end with ONE diagnostic question to pinpoint the exact bottleneck.`
+  },
+  aria: {
+    name: 'ARIA',
+    sub: 'Customer Support Agent · 24/7 resolution & escalation',
+    greeting: "ARIA online — support systems active. I handle inbound resolution, ticket routing, and customer experience optimization. What's your current support setup — and where are the biggest friction points?",
+    chips: ['ticket volume', 'response time', 'escalation', 'onboarding', 'retention', 'churn'],
+    caps: ['Ticket Triage & Routing','SLA Management','Escalation Protocols','Onboarding Automation','Churn Signal Detection','NPS Improvement'],
+    system: `You are ARIA — Aetherion's Customer Support Agent, built by Ramiro P. in Houston, TX.
+
+You are a customer experience architect and support operations expert. Your domain: support ticket management, SLA optimization, escalation protocols, customer onboarding, retention, and churn prevention.
+
+IDENTITY: Empathetic but efficient. You balance customer-first thinking with operational rigor. You know that great support is a retention engine, not just a cost center.
+
+YOUR EXPERTISE:
+- Support ticket systems: triage, priority scoring, routing logic (Tier 1/2/3)
+- SLA management: response time targets, resolution targets by severity
+- Escalation protocols: when to involve humans, how to structure handoffs
+- Customer onboarding: automated Day 1–14 sequences, activation milestones
+- Churn signals: usage drop-off detection, NPS dip response, renewal risk flags
+- Retention strategies: proactive check-ins, loyalty programs, success milestones
+- Tools: Zendesk, Intercom, Freshdesk, GoHighLevel support flows
+
+Aetherion's ARIA agent handles: inbound ticket classification, FAQ resolution, escalation routing, 24/7 response with sub-2s SLA, post-resolution follow-up.
+
+Always end with ONE question that identifies the highest-impact support problem to solve first.`
+  },
+  pulse: {
+    name: 'PULSE',
+    sub: 'Marketing Automation Agent · Campaigns & content',
+    greeting: "PULSE online — marketing systems active. I architect campaigns, content sequences, and growth experiments. What's your current marketing stack, and what's the biggest gap between attention and conversion?",
+    chips: ['email campaigns', 'content strategy', 'SEO', 'paid ads', 'funnel', 'A/B testing'],
+    caps: ['Campaign Architecture','Email Sequence Design','Funnel Optimization (TOFU/MOFU/BOFU)','A/B Testing Frameworks','Content Calendar Automation','Attribution Tracking'],
+    system: `You are PULSE — Aetherion's Marketing Automation Agent, built by Ramiro P. in Houston, TX.
+
+You are a full-stack digital marketing strategist and automation architect. Your domain: campaign design, email sequences, funnel optimization, content strategy, paid advertising analysis, and growth experiments.
+
+IDENTITY: Data-obsessed, creative, and executional. You think in funnels, sequences, and conversion rates. Every recommendation comes with a testable hypothesis and a success metric.
+
+YOUR EXPERTISE:
+- Funnel strategy: TOFU → MOFU → BOFU optimization
+- Email marketing: segmentation, sequence design, deliverability, open/click rate benchmarks
+- Content strategy: content calendar, repurposing framework, SEO-driven content clusters
+- Paid advertising: creative testing frameworks, audience segmentation, ROAS optimization
+- A/B testing: hypothesis formation, statistical significance
+- Key metrics: CAC, LTV, ROAS, CTR, MQL conversion rate
+
+Aetherion's PULSE agent automates: email sequence triggers, content publishing schedules, lead segment tagging, A/B test variant delivery, campaign performance reporting.
+
+Always end with ONE question that identifies the biggest conversion gap in their current marketing funnel.`
+  }
+};
+
+let currentAgent = 'core';
+let history = [];
+let busy = false;
+
+// ── AGENT SWITCHER ────────────────────────────────────────────────────────────
+function switchTab(btn, agentKey) {
+  document.querySelectorAll('.atab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  currentAgent = agentKey;
+  const agent = AGENTS[agentKey];
+  document.getElementById('chat-agent-name').textContent = agent.name;
+  document.getElementById('chat-agent-sub').textContent = agent.sub;
+  const capList = document.getElementById('cap-list');
+  capList.innerHTML = agent.caps.map(c => `<div class="cap-item"><span class="cap-dot"></span>${c}</div>`).join('');
+  const chipsEl = document.getElementById('chips');
+  chipsEl.innerHTML = agent.chips.map(c => `<button class="chip" onclick="suggest(this)">${c}</button>`).join('');
+  const chatBody = document.getElementById('chat-body');
+  chatBody.innerHTML = '';
+  history = [];
+  demoCount = 0;
+  demoLocked = false;
+  const inp = document.getElementById('chat-in');
+  inp.disabled = false;
+  inp.placeholder = 'Try: "scale" · "leads" · "help" · or anything...';
+  document.getElementById('chips').style.opacity = '';
+  document.getElementById('chips').style.pointerEvents = '';
+  setBusy(false);
+  setTimeout(() => { addAI(agent.greeting); history.push({role:'assistant',content:agent.greeting}); }, 300);
+}
+
+function activateAgent(key) {
+  const tab = document.querySelector(`.atab[data-agent="${key}"]`);
+  if (tab) { tab.click(); document.getElementById('demo').scrollIntoView({behavior:'smooth'}); }
+}
+
+// ── CHAT ENGINE ───────────────────────────────────────────────────────────────
+const chatBodyEl = document.getElementById('chat-body');
+const chatInput  = document.getElementById('chat-in');
+const typingEl   = document.getElementById('typing');
+const sendBtnEl  = document.getElementById('send-btn');
+
+function formatText(text) {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/→ /g, '<span style="color:rgba(255,255,255,.55);font-weight:700">→</span> ')
+    .replace(/\n/g, '<br>');
+}
+
+function addAI(text) {
+  const agent = AGENTS[currentAgent];
+  const wrap = document.createElement('div');
+  wrap.className = 'msg-ai-wrap';
+  wrap.innerHTML = `<div class="msg-ai-label"><div class="msg-avatar">${agent.name[0]}</div><span class="msg-ai-name-lbl">${agent.name}</span></div><div class="msg-ai">${formatText(text)}</div>`;
+  chatBodyEl.appendChild(wrap);
+  // Scroll to show the TOP of the new message, not the bottom
+  setTimeout(() => {
+    wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 60);
+}
+
+function addUser(text) {
+  const d = document.createElement('div');
+  d.className = 'msg-user';
+  d.textContent = text;
+  chatBodyEl.appendChild(d);
+  chatBodyEl.scrollTop = chatBodyEl.scrollHeight;
+}
+
+function setBusy(state) {
+  busy = state;
+  sendBtnEl.disabled = state;
+  typingEl.classList.toggle('on', state);
+  if (state) chatBodyEl.scrollTop = chatBodyEl.scrollHeight;
+}
+
+// ── DEMO LIMITS ──────────────────────────────────────────────────────────────
+const DEMO_LIMIT = 6; // max messages per session
+let demoCount = 0;
+let demoLocked = false;
+
+function scrollToLatestMsg() {
+  // Scroll chat body so latest AI message top is visible
+  const chatBody = document.getElementById('chat-body');
+  const msgs = chatBody.querySelectorAll('.msg-ai-wrap, .msg-user');
+  if (msgs.length === 0) return;
+  const last = msgs[msgs.length - 1];
+  // Find the AI wrap (may be the msg itself or parent)
+  const target = last.classList.contains('msg-ai-wrap') ? last : last;
+  // Scroll so top of message is near top of chat window
+  setTimeout(() => {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 80);
+}
+
+function showDemoLimit() {
+  const chatBody = document.getElementById('chat-body');
+  const wrap = document.createElement('div');
+  wrap.className = 'msg-ai-wrap demo-limit-wrap';
+  const inner = document.createElement('div');
+  inner.innerHTML = '<div class="msg-ai-label"><div class="msg-avatar" style="background:rgba(0,212,200,.15);border-color:rgba(0,212,200,.4);">⚡</div><span class="msg-ai-name-lbl">AETHERION CORE</span></div>';
+  const msgDiv = document.createElement('div');
+  msgDiv.className = 'msg-ai';
+  msgDiv.style.cssText = 'border-color:rgba(0,212,200,.25);background:rgba(0,212,200,.04);';
+  msgDiv.innerHTML = '<strong>You have reached the demo limit.</strong><br><br>This is a preview — the full system handles unlimited conversations, all 6 agents, custom training on your data, and full CRM integration.<br><br><strong>Ready to see what a custom build looks like for your business?</strong><div style="margin-top:1.2rem"><a href="#contact" class="btn btn-p btn-sm" style="display:inline-block;text-decoration:none">Book a Discovery Call →</a></div>';
+  wrap.appendChild(inner);
+  wrap.appendChild(msgDiv);
+  chatBody.appendChild(wrap);
+  scrollToLatestMsg();
+
+  // Lock input
+  const inp = document.getElementById('chat-in');
+  const btn = document.getElementById('send-btn');
+  inp.disabled = true;
+  inp.placeholder = 'Demo complete — book a call to go further';
+  btn.disabled = true;
+  demoLocked = true;
+  document.getElementById('chips').style.opacity = '0.35';
+  document.getElementById('chips').style.pointerEvents = 'none';
+}
+
+async function sendMsg(text) {
+  const trimmed = text.trim();
+  if (!trimmed || busy || demoLocked) return;
+  addUser(trimmed);
+  history.push({role:'user', content:trimmed});
+  chatInput.value = '';
+  demoCount++;
+  setBusy(true);
+  const delay = Math.min(400 + trimmed.length * 12, 1800);
+  const agent = AGENTS[currentAgent];
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 600,
+        system: agent.system + '\n\nIMPORTANT: This is a DEMO. Keep responses under 200 words. Be punchy, direct, and always end with a clear CTA to visit the contact form or book a call. Never go beyond 3 bullet points.',
+        messages: history
+      })
+    });
+    if (!res.ok) throw new Error('api_error');
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const reply = data.content?.[0]?.text || fallback(trimmed);
+    history.push({role:'assistant', content:reply});
+    setTimeout(() => {
+      setBusy(false);
+      addAI(reply);
+      scrollToLatestMsg();
+      if (demoCount >= DEMO_LIMIT) showDemoLimit();
+    }, delay);
+  } catch {
+    const reply = fallback(trimmed);
+    history.push({role:'assistant', content:reply});
+    setTimeout(() => {
+      setBusy(false);
+      addAI(reply);
+      scrollToLatestMsg();
+      if (demoCount >= DEMO_LIMIT) showDemoLimit();
+    }, delay);
+  }
+}
+
+function suggest(el) { sendMsg(el.textContent); }
+function handleSend() { sendMsg(chatInput.value.trim()); }
+chatInput.addEventListener('keydown', e => { if(e.key==='Enter'){e.preventDefault();handleSend();} });
+
+// ── FALLBACK BRAIN ────────────────────────────────────────────────────────────
+function fallback(msg) {
+  const m = msg.toLowerCase().trim();
+
+  // ── TriggerAgent Responses ───────────────────────────────────────────────
+  if (/(pricing|plans?|how much|cost|\$|subscription|price)/.test(m))
+    return "**Pricing — Three Plans Built to Scale:**\n\n→ **Starter — $99/mo**: 1 custom AI agent, lead capture, basic CRM integration, 7-day deployment.\n→ **Business — $299/mo**: 3 agents (SCOUT + ARIA + 1 more), full API integrations (HubSpot, GHL, Zapier), dedicated account manager. Most popular.\n→ **Enterprise — $799/mo**: Unlimited agents, custom LLM training on your data, white-label, dedicated AI architect, 99.9% uptime SLA.\n\nNo hidden fees. No contracts. Most clients recover the monthly cost within 30–60 days through time saved and leads captured. Ready to get started?";
+
+  if (/(demo|walkthrough|see it|watch|book|live demo|video)/.test(m))
+    return "**Demo Options:**\n\n→ **Live AI Demo**: You're already talking to it — this chat IS the live demo. Ask me anything about your business.\n→ **Book a Live Walkthrough**: Ramiro's team will walk you through a custom build tailored to your specific workflow. Hit the contact form below (scroll to 'Initiate Protocol') and select your preferred time. You'll hear back within 24 hours.\n\nWant me to show you what your specific workflow could look like automated?";
+
+  if (/(security|privacy|data|encrypt|gdpr|hipaa|safe|secure|confidential)/.test(m))
+    return "**Security & Data Privacy:**\n\n→ All data is encrypted in transit (TLS 1.3) and at rest (AES-256).\n→ Aetherion never sells or shares your data with third parties.\n→ Agents are sandboxed per client — your data never crosses into another client's system.\n→ GDPR-compliant data handling with configurable retention policies.\n→ Enterprise plans include custom data residency and private deployment options.\n\nNeed a specific compliance framework (HIPAA, SOC2)? Tell me your industry and I'll give you the specifics.";
+
+  if (/(case study|success|proof|results|client|example|worked|testimonial|social proof)/.test(m))
+    return "**Client Results:**\n\n→ **Real Estate Broker, Houston**: SCOUT qualified 40+ leads in week one without human intervention. Close rate jumped by targeting only deal-ready prospects.\n→ **E-Commerce Founder (7-fig)**: Replaced 3 VAs with ARIA. Response time dropped from hours to under 2 seconds. Customer satisfaction scores went up.\n→ **Digital Agency Owner**: Full lead-to-booking pipeline live in 9 days — CRM, follow-up, calendar fully automated. \"Best $299 I spend every month.\"\n\nWhat industry are you in? I can tell you which agent gets the best ROI for your specific model.";
+
+  if (/(competitor|vs|versus|alternative|compare|other|competition|better than|why not)/.test(m))
+    return "**Why Aetherion vs. Alternatives:**\n\n→ **vs. Template bots (ManyChat, Chatfuel)**: Aetherion builds custom-trained agents on YOUR data, tone, and workflows. Not plug-and-play scripts.\n→ **vs. Hiring VAs**: One agent handles 100+ conversations simultaneously, 24/7, sub-2s response, no sick days.\n→ **vs. Enterprise AI platforms (Salesforce Einstein, etc.)**: Fraction of the cost, deployed in 7–14 days vs. 6–12 months, with a dedicated architect — not a support ticket.\n→ **vs. DIY Zapier automations**: We build multi-step autonomous logic that can reason and adapt, not just trigger-action sequences.\n\nWhat's your current setup? I'll show you exactly what switches.";
+
+  if (/(integrat|zapier|ghl|gohighlevel|hubspot|salesforce|crm|make\.com|n8n|twilio|connect|compatible|plugin)/.test(m))
+    return "**Integrations — Compatible Stack:**\n\n→ **CRM**: HubSpot, Salesforce, GoHighLevel, Pipedrive\n→ **Automation**: Zapier, Make (formerly Integromat), n8n\n→ **Communication**: Twilio (SMS/voice), Slack, Gmail, Outlook\n→ **E-Commerce**: Shopify, WooCommerce, Stripe\n→ **Scheduling**: Calendly, Google Calendar, Acuity\n→ **Custom**: Any REST API or webhook-compatible platform\n\nDon't see yours? Drop the tool name and I'll tell you if we can connect it.";
+
+  if (/(discount|coupon|promo|deal|off|cheaper|negotiate|lower|afford)/.test(m))
+    return "**Pricing is firm — here's why it's still the best ROI:**\n\n→ At $299/mo for 3 agents running 24/7, you're paying less than one day of a VA's monthly salary for a system that never sleeps.\n→ We don't run discounts because we don't pad margins — the price reflects the actual build cost and support.\n→ **However**: If budget is the real barrier, the Starter plan at $99/mo is a genuine test with no commitment — most clients upgrade within 60 days after seeing the results.\n\nWhat's the actual constraint — budget, timing, or confidence in the ROI?";
+
+  if (/^(hey|hi|hello|yo|sup|what'?s up|howdy|hiya|good (morning|afternoon|evening))[\s!?]*$/.test(m))
+    return "Hey — good to have you here. What are you working on or trying to solve? Hit me with it — one word is enough.";
+  if (/^(idk|not sure|no idea|ig|i guess|maybe)[\s.!?]*$/.test(m))
+    return "No worries — that's a fine starting point.\n\nMost people know something's off but can't pinpoint it. Is the issue getting customers, keeping them, or running the operation?";
+  if (/^(ok|okay|cool|nice|got it|word|bet|facts|true|fr|makes sense|sure|alright)[\s.!?]*$/.test(m))
+    return "Got it. What do you want to dig into? Drop a word or a problem — I'll run with it.";
+  if (/^(scale|scaling)[\s.!?]*$/.test(m))
+    return "🧠 Interpreted Intent: You want to grow — more revenue, more customers, or more efficiency at volume.\n\n━━━━━━━━━━━━━━━━━━━━\nScaling breaks into 5 layers:\n\n→ Acquisition — Consistent new lead flow?\n→ Conversion — What % become paying clients?\n→ Fulfillment — Can you handle 3x volume without breaking?\n→ Retention — Are customers staying or churning?\n→ Systems — What's still manual that should be automated?\n\nBottlenecks to Check:\n→ Most businesses fail at conversion or fulfillment before hitting a real growth ceiling\n→ Scaling broken systems just accelerates the problems\n\nWhat layer feels weakest right now?";
+  if (/^(leads?|lead gen)[\s.!?]*$/.test(m))
+    return "🧠 Interpreted Intent: Generating more leads or improving lead quality.\n\n━━━━━━━━━━━━━━━━━━━━\nLead gen breaks into two problems:\n\n→ Volume — Not enough people entering your funnel\n→ Quality — Leads don't convert or aren't the right fit\n\nAction Plan:\n→ Pick 1 primary channel (content, paid, outreach, referrals)\n→ Tighten your lead magnet to attract your ideal buyer\n→ Add AI qualification to filter and route in real time\n→ Build a 5–7 touch follow-up sequence\n\nBottlenecks to Check:\n→ No lead magnet or weak CTA\n→ No automated follow-up — leads go cold in 24 hours\n\nAre you struggling with volume or conversion?";
+  if (/^(automat|automation|automate)[\s.!?]*$/.test(m))
+    return "🧠 Interpreted Intent: Remove manual work from your business operations.\n\n━━━━━━━━━━━━━━━━━━━━\nHigh-ROI automation targets:\n\n→ Lead follow-up — 70%+ of leads lost to slow/no follow-up\n→ Appointment booking — Eliminate scheduling back-and-forth\n→ CRM data entry — Every manual log is a tax on your team\n→ Client onboarding — Automate the first 14 days\n→ Reporting — KPIs pulled automatically\n\nBottlenecks to Check:\n→ No CRM or using it inconsistently\n→ Staff doing work a $50/mo tool could handle\n\nAetherion builds these pipelines end-to-end — most live in 7–14 days.\n\nWhat's the most time-consuming manual task in your business right now?";
+  if (/(price|cost|how much|plan|\$|pay|subscription)/.test(m))
+    return "Three tiers:\n\n→ Starter ($99/mo) — 1 AI agent + lead capture. Good for testing.\n→ Business ($299/mo) — 3 custom agents, full integrations, dedicated account manager. Most popular.\n→ Enterprise ($799/mo) — unlimited systems, custom LLM training, white-label, dedicated architect.\n\nMost clients recover the cost within 30–60 days through time saved and leads captured. What size is your operation?";
+  if (/(who (are|is)|what is aetherion|about (you|this|the company)|what do you do)/.test(m))
+    return "Aetherion Systems is an AI automation agency founded by Ramiro P. out of Houston. We build custom AI agents, lead capture systems, and workflow automation for businesses that want to run more efficiently — not template bots, but systems trained on your specific data, tone, and processes.\n\nAgent roster: SCOUT (sales), ARIA (support), PULSE (marketing), NEXUS (ops), APEX (outbound), and fully custom builds.\n\nMost systems go live in 7–14 days. What type of business are you running?";
+  if (/(contact|reach out|schedule|call|discovery|get started|book)/.test(m))
+    return "Fastest route: the contact form at the bottom of this page — scroll down to 'Initiate Protocol.' Fill in your details and Ramiro's team will reach out within 24 hours to set up a discovery call.\n\nWant a quick rundown of what to expect from that call first?";
+  return "🧠 Treating that as a business signal.\n\nAetherion builds AI infrastructure that handles the parts of your business that shouldn't require a human — lead capture, qualification, follow-up, CRM sync, booking, and reporting.\n\nDrop one word — 'leads', 'sales', 'automate', 'scale', 'clients' — and I'll give you a full breakdown. Or switch agents in the sidebar to talk to a specialist. What's the core problem you're trying to solve?";
+}
+
+// ── INITIAL LOAD ──────────────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const agent = AGENTS[currentAgent];
+    addAI(agent.greeting);
+    history.push({role:'assistant', content:agent.greeting});
+  }, 900);
+});
+
+// ── PARTICLE SYSTEM ───────────────────────────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('particle-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const TURQ = '0,212,200';
+  const WHITE = '255,255,255';
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      this.r  = Math.random() * 1.4 + .3;
+      this.vx = (Math.random() - .5) * .35;
+      this.vy = (Math.random() - .5) * .35;
+      this.a  = Math.random() * .4 + .1;
+      this.color = Math.random() > .7 ? TURQ : WHITE;
+      this.life = Math.random() * 200 + 100;
+      this.age  = 0;
+    }
+    update() {
+      this.x += this.vx; this.y += this.vy; this.age++;
+      if (this.age > this.life || this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+    }
+    draw() {
+      const fade = Math.min(this.age / 30, 1) * Math.min((this.life - this.age) / 30, 1);
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color},${this.a * fade})`;
+      ctx.fill();
+    }
+  }
+
+  // Connection lines
+  function drawLines() {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 100) {
+          const alpha = (1 - dist/100) * .06;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(${TURQ},${alpha})`;
+          ctx.lineWidth = .5;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    drawLines();
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// ── STAT COUNTER ANIMATION ────────────────────────────────────────────────────
+function animateCounters() {
+  const statVals = document.querySelectorAll('.stat-val');
+  statVals.forEach(el => {
+    const text = el.textContent.trim();
+    // Only animate pure numbers or numbers with % or × suffix
+    const match = text.match(/^([<]?)([0-9.]+)([^0-9.]*)$/);
+    if (!match) return;
+    const prefix = match[1];
+    const target = parseFloat(match[2]);
+    const suffix = match[3];
+    const decimals = match[2].includes('.') ? match[2].split('.')[1].length : 0;
+    let start = null;
+    const duration = 1200;
+    function step(ts) {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = (target * ease).toFixed(decimals);
+      el.textContent = prefix + current + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = prefix + match[2] + suffix;
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+// Trigger counter when stats section scrolls into view
+const statsEl = document.querySelector('.stats');
+if (statsEl) {
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCounters(); counterObs.disconnect(); }
+    });
+  }, { threshold: .5 });
+  counterObs.observe(statsEl);
+}
+
+// ── MOUSE GLOW FOLLOW ─────────────────────────────────────────────────────────
+(function() {
+  const glow = document.createElement('div');
+  glow.style.cssText = 'position:fixed;width:300px;height:300px;border-radius:50%;pointer-events:none;z-index:1;transition:transform .12s ease,opacity .3s;opacity:0;background:radial-gradient(circle,rgba(0,212,200,.04) 0%,transparent 70%);transform:translate(-50%,-50%)';
+  document.body.appendChild(glow);
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+    glow.style.opacity = '1';
+  });
+  document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+})();
+
+</script>
+
+
+</body></html>
